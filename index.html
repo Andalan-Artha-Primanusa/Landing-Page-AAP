@@ -1,565 +1,1595 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>PT Andalan Artha Primanusa — Company Profile</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-i18n="meta_title">Andalan Group — Kontraktor Tambang</title>
     <meta
       name="description"
-      content="AAP: Kontraktor tambang nikel & batubara. Produktivitas tinggi, keselamatan prima, dan keberlanjutan."
+      data-i18n="meta_desc"
+      content="Andalan Group: mitra strategis dari pit ke port. End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping."
     />
-    <meta
-      property="og:title"
-      content="PT Andalan Artha Primanusa — Company Profile"
-    />
-    <meta
-      property="og:description"
-      content="Kontraktor tambang andalan: presisi, keselamatan, keberlanjutan."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/og-cover.jpg" />
-    <meta name="theme-color" content="#7A2C2F" />
 
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              aap: {
-                maroon: "#7A2C2F",
-                maroonDark: "#5C1E23",
-                black: "#1B1B1B",
-                white: "#FFFFFF",
-                ivory: "#F7F5F0",
-              },
-            },
-            fontFamily: {
-              sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
-            },
-            boxShadow: { glow: "0 0 40px rgba(122,44,47,.25)" },
-            backgroundImage: {
-              mesh: "radial-gradient(80% 80% at 100% -10%, rgba(122,44,47,.12) 0%, rgba(255,255,255,0) 60%), radial-gradient(60% 60% at -10% 10%, rgba(0,0,0,.06) 0%, rgba(255,255,255,0) 60%)",
-            },
-          },
-        },
-      };
-    </script>
+
+    <!-- ArcGIS JS API -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
+      href="https://js.arcgis.com/4.29/esri/themes/light/main.css"
     />
+    <script src="https://js.arcgis.com/4.29/"></script>
+
     <style>
-      .stroke {
-        color: transparent;
-        -webkit-text-stroke: 2px rgba(122, 44, 47, 0.35);
+      :root {
+        --maroon: #482728;
+        --gold: #d4af37;
+        --ink: #0e0e0e;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      .slide {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.7s ease;
+      }
+      .slide.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(6px);
+      }
+      .obj-left-30 {
+        object-position: left 30%;
+      }
+      @keyframes accordion-down {
+        from {
+          opacity: 0;
+          transform: scaleY(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: scaleY(1);
+        }
+      }
+      .animate-[accordion-down_.25s_ease] {
+        animation: accordion-down 0.25s ease;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .slide {
+          transition: none;
+        }
+        .animate-[accordion-down_.25s_ease] {
+          animation: none !important;
+        }
+      }
+      .focus-ring:focus {
+        outline: 2px solid rgba(122, 44, 47, 0.35);
+        outline-offset: 2px;
+      }
+      .card:hover .card-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .card:focus-within .card-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* --- caret nav: harden against external CSS overrides --- */
+      /* Caret aman dari override CSS luar */
+      .nav-caret {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        line-height: 0;
+        flex: 0 0 14px;
+        vertical-align: middle;
+      }
+      .nav-caret svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #374151;
+      } /* text-gray-700 */
+      .nav-caret path {
+        stroke: currentColor !important;
+        fill: none !important;
+        stroke-width: 2 !important;
+        stroke-linecap: round !important;
+        stroke-linejoin: round !important;
       }
     </style>
-
-    <!-- JSON-LD Organization -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "PT Andalan Artha Primanusa",
-        "url": "https://example.com",
-        "logo": "https://example.com/assets/logo-aap.png",
-        "sameAs": ["https://www.linkedin.com/company/andalan-artha-primanusa"],
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Jl. Taman Pluit Kencana No.2 Blok N Kav.2, Pluit, Penjaringan",
-          "addressLocality": "Jakarta",
-          "postalCode": "14450",
-          "addressCountry": "ID"
-        },
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "telephone": "+62-811-101-056-22",
-            "contactType": "customer service"
-          }
-        ]
-      }
-    </script>
   </head>
-  <body class="bg-aap-white text-aap-black font-sans">
-    <!-- NAV -->
-    <header class="sticky top-0 z-50 bg-aap-white/90 backdrop-blur border-b">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="flex items-center justify-between py-3">
-          <a href="#home" class="flex items-center gap-3">
-            <img
-              src="assets/logo-aap.png"
-              alt="AAP"
-              class="h-9 w-9 object-contain"
-            />
-            <div class="font-extrabold leading-tight">
-              <span class="text-aap-black">Andalan</span
-              ><span class="text-aap-maroon"> Artha Primanusa</span>
-            </div>
-          </a>
-          <nav class="hidden md:flex items-center gap-6 text-sm">
-            <a href="#layanan" class="hover:text-aap-maroon">Layanan</a>
-            <a href="#visi-misi" class="hover:text-aap-maroon">Visi & Misi</a>
-            <a href="#core" class="hover:text-aap-maroon">Core Value</a>
-            <a href="#kapabilitas" class="hover:text-aap-maroon">Kapabilitas</a>
-            <a href="#safety" class="hover:text-aap-maroon">Safety</a>
-            <a href="#faq" class="hover:text-aap-maroon">FAQ</a>
-            <a href="#kontak" class="hover:text-aap-maroon">Kontak</a>
-          </nav>
-          <div class="flex items-center gap-2">
-           
-            <a
-              href="#kontak"
-              class="inline-flex items-center gap-2 bg-aap-maroon hover:bg-aap-maroonDark text-white font-semibold px-4 py-2 rounded-full shadow-glow"
-              >Konsultasi</a
-            >
-          </div>
-        </div>
-      </div>
-    </header>
 
-    <!-- HERO -->
-    <section id="home" class="relative pt-16 md:pt-24 pb-16 bg-mesh">
-      <div
-        class="max-w-7xl mx-auto px-4 grid md:grid-cols-12 gap-10 items-center"
-      >
-        <div class="md:col-span-7">
-          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-            Kontraktor Tambang <span class="text-aap-maroon">Generasi Baru</span
-            ><br />
-            <span class="stroke">Elegan. Presisi. Berkelanjutan.</span>
-          </h1>
-          <p class="mt-5 text-gray-700 max-w-2xl">
-            PT Andalan Artha Primanusa hadir sebagai mitra strategis dalam
-            industri pertambangan nikel dan batubara. Kami menjalankan setiap
-            proyek dengan disiplin KPI yang terukur, standar keselamatan kerja
-            tertinggi, serta tata kelola yang transparan dan profesional. Dengan
-            dukungan armada modern, teknologi telematics, dan tim berpengalaman,
-            kami berkomitmen menghadirkan operasi tambang yang produktif, aman,
-            dan ramah lingkungan.
-          </p>
+  <body class="bg-gray-50 text-[15px] text-[--ink]">
+   <!-- ================== NAVBAR ================== -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/5"
+        x-data="nav()" @keydown.escape="closeAll()">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group focus-ring" aria-label="Andalan Group">
+        <span class="font-extrabold tracking-tight text-lg md:text-xl">
+          <span class="bg-gradient-to-r from-[--ink] to-[--maroon] bg-clip-text text-transparent">Andalan</span>
+          <span class="text-[--maroon] group-hover:text-[--gold] transition">Group</span>
+        </span>
+      </a>
 
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#layanan"
-              class="px-5 py-3 rounded-xl bg-aap-maroon text-white font-semibold hover:bg-aap-maroonDark"
-              >Jelajahi Layanan</a
-            >
-            <a
-              href="company.pdf"
-              class="px-5 py-3 rounded-xl border border-aap-maroon text-aap-maroon hover:bg-aap-maroon hover:text-white"
-              >Download Company Profile</a
-            >
-          </div>
-          <div class="mt-8 grid grid-cols-3 gap-4 max-w-lg text-center">
-            <div class="rounded-xl border p-4 bg-white">
-              <div class="text-2xl font-extrabold">10+</div>
-              <div class="text-xs text-gray-600">Tahun Kolektif Tim</div>
-            </div>
-            <div class="rounded-xl border p-4 bg-white">
-              <div class="text-2xl font-extrabold">5M+</div>
-              <div class="text-xs text-gray-600">BCM Overburden</div>
-            </div>
-            <div class="rounded-xl border p-4 bg-white">
-              <div class="text-2xl font-extrabold">99.8%</div>
-              <div class="text-xs text-gray-600">Rata-rata Uptime</div>
-            </div>
-          </div>
-        </div>
-        <div class="md:col-span-5">
-          <div class="relative">
-            <div
-              class="absolute -inset-1 bg-aap-maroon rounded-3xl blur opacity-30"
-            ></div>
-            <div class="relative rounded-3xl overflow-hidden border bg-white">
-              <img
-                src="assets/hero-mining.jpg"
-                alt="Mining operations"
-                class="aspect-[4/3] object-cover"
-              />
-            </div>
+      <!-- Desktop Nav (klik = buka/tutup) -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium"
+           aria-label="Primary"
+           @click.outside="open=''">
+        <!-- Tentang -->
+        <div class="relative" :aria-expanded="open==='about'">
+          <button type="button"
+                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                  @click="toggle('about')"
+                  :aria-expanded="open==='about'">
+            <span data-i18n="nav_about">Tentang</span>
+            <span class="nav-caret ml-1 transition-transform duration-200"
+                  :class="open==='about' ? 'rotate-180' : ''">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+          <div x-cloak x-show="open==='about'" x-transition.origin.top.left
+               @click.stop
+               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <a href="#tentang-kami" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tentang Kami</a>
+            <a href="#sejarah" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Sejarah</a>
+            <a href="#visi-misi" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- LAYANAN -->
-    <section id="layanan" class="py-16 bg-aap-ivory">
-      <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Layanan</h2>
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-bold text-xl">Mining & Overburden</h3>
-            <p class="text-sm mt-2 text-gray-700">
-              Drilling–blasting, loading–hauling, disposal, KPI & safety ketat.
-            </p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-bold text-xl">Nickel Operations</h3>
-            <p class="text-sm mt-2 text-gray-700">
-              Selective mining, ore control & blending sesuai spesifikasi
-              smelter.
-            </p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-bold text-xl">Engineering & Compliance</h3>
-            <p class="text-sm mt-2 text-gray-700">
-              Mine plan, water management, SMKP–K3LH, pelaporan digital.
-            </p>
+        <!-- Bisnis Kami -->
+        <div class="relative" :aria-expanded="open==='business'">
+          <button type="button"
+                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                  @click="toggle('business')"
+                  :aria-expanded="open==='business'">
+            <span>Bisnis Kami</span>
+            <span class="nav-caret ml-1 transition-transform duration-200"
+                  :class="open==='business' ? 'rotate-180' : ''">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+          <div x-cloak x-show="open==='business'" x-transition.origin.top.left
+               @click.stop
+               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <a href="#mine-planning" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Mine Planning</a>
+            <a href="#operation" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Mining Operation</a>
+            <a href="#logistics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Logistics</a>
+            <a href="#support" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Support Services</a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- VISI & MISI (foto 1) -->
-    <section id="visi-misi" class="py-16">
-      <div
-        class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-start"
-      >
-        <div>
-          <h2 class="text-3xl md:text-4xl font-extrabold">Vision</h2>
-          <p class="mt-4 text-gray-800 leading-relaxed">
-            Become the prominent and trustworthy mining contractor in Indonesia
-            with excellent credibility and commitment in delivering result,
-            supported by solid foundation of mining operation, integrated system
-            and excellent teamwork.
-          </p>
-          <img
-            src="assets/visi-misi.jpg"
-            alt="AAP Vision & Mission slide"
-            class="mt-6 rounded-2xl border"
-          />
+        <!-- ESG -->
+        <div class="relative" :aria-expanded="open==='esg'">
+          <button type="button"
+                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                  @click="toggle('esg')"
+                  :aria-expanded="open==='esg'">
+            <span>ESG</span>
+            <span class="nav-caret ml-1 transition-transform duration-200"
+                  :class="open==='esg' ? 'rotate-180' : ''">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+          <div x-cloak x-show="open==='esg'" x-transition.origin.top.left
+               @click.stop
+               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <a href="#environment" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Environment</a>
+            <a href="#social" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Social</a>
+            <a href="#governance" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Governance</a>
+          </div>
         </div>
-        <div>
-          <h2 class="text-3xl md:text-4xl font-extrabold">Mission</h2>
-          <ul class="mt-4 space-y-3 text-gray-800">
-            <li>
-              • Maximize the operational productivity with excellent monitoring
-              system.
-            </li>
-            <li>
-              • Precise identification with meticulous data examination as the
-              continuous improvement and development.
-            </li>
-            <li>
-              • Strong resilient mindset to have mental and emotional fortitude
-              to bounce back from adversity, overcome challenges, and adapt to
-              difficult situations.
-            </li>
-            <li>• Providing mutually beneficial solutions for stakeholders.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <!-- CORE VALUE (foto 2: EFFORT) -->
-    <section id="core" class="py-16 bg-aap-ivory">
-      <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold">
-          Core Value: <span class="text-aap-maroon">EFFORT</span>
-        </h2>
+        <!-- Investor -->
+        <div class="relative" :aria-expanded="open==='investor'">
+          <button type="button"
+                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                  @click="toggle('investor')"
+                  :aria-expanded="open==='investor'">
+            <span>Investor</span>
+            <span class="nav-caret ml-1 transition-transform duration-200"
+                  :class="open==='investor' ? 'rotate-180' : ''">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+          <div x-cloak x-show="open==='investor'" x-transition.origin.top.left
+               @click.stop
+               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <a href="#overview" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Overview</a>
+            <a href="#reports" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Reports</a>
+            <a href="#news" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Newsroom</a>
+          </div>
+        </div>
+
+        <!-- Media -->
+        <div class="relative" :aria-expanded="open==='media'">
+          <button type="button"
+                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                  @click="toggle('media')"
+                  :aria-expanded="open==='media'">
+            <span>Media</span>
+            <span class="nav-caret ml-1 transition-transform duration-200"
+                  :class="open==='media' ? 'rotate-180' : ''">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+          <div x-cloak x-show="open==='media'" x-transition.origin.top.left
+               @click.stop
+               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+            <a href="#press" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Press</a>
+            <a href="#gallery" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Gallery</a>
+            <a href="#downloads" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Downloads</a>
+          </div>
+        </div>
+
+        <!-- Tim Kami (tanpa dropdown) -->
+        <a href="#tim" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring">
+          Tim Kami
+        </a>
+
+        <!-- CTA -->
+        <a href="#cta" data-i18n="cta_consult"
+           class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[--maroon] text-white font-semibold shadow-[0_0_8px_rgba(212,175,55,0.25)] hover:scale-105 active:scale-95 transition focus-ring">
+          Konsultasi
+        </a>
+
+        <!-- Language -->
+        <div class="ml-2">
+          <button id="langBtn" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-black/10 text-[13px] text-gray-700 hover:bg-gray-50 focus-ring"
+                  aria-label="Switch Language" title="Switch Language">
+            <span id="langLabel">ID</span>
+            <span class="nav-caret">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile buttons -->
+      <div class="md:hidden flex items-center gap-2">
+        <button id="langBtnSm" class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 text-xs border border-black/10 focus-ring"
+                aria-label="Switch Language (mobile)">ID</button>
+        <button id="menuBtn" class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 focus-ring"
+                aria-label="Open Menu" :aria-expanded="mobileOpen" @click="mobileOpen = !mobileOpen">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
-      <div class="max-w-7xl mx-auto px-4">
+    </div>
+  </div>
+
+  <!-- Mobile Menu (tetap collapsible) -->
+  <div class="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5"
+       x-show="mobileOpen" x-transition.origin.top x-cloak>
+    <nav class="flex flex-col px-6 py-4 gap-2 text-base font-medium">
+      <!-- Tentang -->
+      <button @click="toggleMobile('about')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
+        <span>Tentang</span>
+        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='about' ? 'rotate-180' : ''">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </button>
+      <div x-show="mobile.open==='about'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+        <a href="#tentang-kami" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Tentang Kami</a>
+        <a href="#sejarah" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Sejarah</a>
+        <a href="#visi-misi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Visi & Misi</a>
+      </div>
+
+      <!-- Bisnis Kami -->
+      <button @click="toggleMobile('business')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
+        <span>Bisnis Kami</span>
+        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='business' ? 'rotate-180' : ''">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </button>
+      <div x-show="mobile.open==='business'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+        <a href="#mine-planning" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Mine Planning</a>
+        <a href="#operation" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Mining Operation</a>
+        <a href="#logistics" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Logistics</a>
+        <a href="#support" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Support Services</a>
+      </div>
+
+      <!-- ESG -->
+      <button @click="toggleMobile('esg')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
+        <span>ESG</span>
+        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='esg' ? 'rotate-180' : ''">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </button>
+      <div x-show="mobile.open==='esg'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+        <a href="#environment" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Environment</a>
+        <a href="#social" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Social</a>
+        <a href="#governance" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Governance</a>
+      </div>
+
+      <!-- Investor -->
+      <button @click="toggleMobile('investor')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
+        <span>Investor</span>
+        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='investor' ? 'rotate-180' : ''">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </button>
+      <div x-show="mobile.open==='investor'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+        <a href="#overview" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Overview</a>
+        <a href="#reports" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Reports</a>
+        <a href="#news" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Newsroom</a>
+      </div>
+
+      <!-- Media -->
+      <button @click="toggleMobile('media')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
+        <span>Media</span>
+        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='media' ? 'rotate-180' : ''">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
+        </span>
+      </button>
+      <div x-show="mobile.open==='media'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+        <a href="#press" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Press</a>
+        <a href="#gallery" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Gallery</a>
+        <a href="#downloads" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Downloads</a>
+      </div>
+
+      <!-- Link langsung -->
+      <a href="#tim" class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">Tim Kami</a>
+
+      <!-- CTA + Language -->
+      <a href="#cta" data-i18n="cta_consult"
+         class="mt-2 px-4 py-2 rounded-xl text-center bg-[--maroon] text-white shadow-[0_0_8px_rgba(212,175,55,0.25)]">Konsultasi</a>
+      <div class="pt-2 flex items-center gap-2">
+        <span class="text-sm text-gray-500">Lang:</span>
+        <button id="langBtnSmMenu" class="px-3 py-1.5 rounded-lg border border-black/10 text-sm hover:bg-gray-50">ID</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+    <!-- ================== /NAVBAR ================== -->
+
+    <!-- ================== HERO SLIDER ================== -->
+    <section
+      id="home"
+      class="relative w-full h-[80vh] md:h-screen min-h-[560px] overflow-hidden"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Hero Gallery"
+      aria-live="polite"
+      tabindex="0"
+    >
+      <!-- Slide 1 -->
+      <div class="slide active absolute inset-0" data-index="0" id="slide-1">
         <img
-          src="assets/core-values.jpg"
-          alt="AAP Core Values — EFFORT"
-          class="rounded-2xl border w-full"
+          src="./images/foto23.png"
+          alt="Operasional tambang — armada di pit"
+          class="w-full h-full object-cover obj-left-30"
+          loading="eager"
         />
-        <div class="mt-8 grid md:grid-cols-3 gap-6 text-sm text-gray-800">
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-semibold">Excellence</h3>
-            <p class="mt-2">Standar kualitas tinggi & efisiensi produksi.</p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-semibold">Focus</h3>
-            <p class="mt-2">
-              Proyek sesuai target waktu, biaya, dan keberlanjutan.
-            </p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-semibold">Fortitude</h3>
-            <p class="mt-2">Keteguhan & ketahanan hadapi tantangan.</p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-semibold">Optimism</h3>
-            <p class="mt-2">Semangat positif & inovatif mengikuti perubahan.</p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-semibold">Responsive</h3>
-            <p class="mt-2">
-              Cepat tanggap terhadap risiko & kebutuhan stakeholder.
-            </p>
-          </div>
-          <div class="p-6 rounded-2xl border bg-white">
-            <h3 class="font-semibold">Tenacity</h3>
-            <p class="mt-2">Gigih capai target & jaga keberlanjutan.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- KAPABILITAS & ARMADA -->
-    <section id="kapabilitas" class="py-16">
-      <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10">
-        <div class="p-6 rounded-2xl border bg-white">
-          <h3 class="text-2xl font-bold text-aap-maroon">
-            Armada & Kapabilitas
-          </h3>
-          <ul class="mt-3 space-y-2 text-gray-800">
-            <li>• Excavator 50–120T, dump truck 20–45T</li>
-            <li>• Dozer, grader, water truck, compactor</li>
-            <li>• Dispatching & telematics, preventive maintenance</li>
-            <li>• Drone mapping & survey, short/long-term scheduling</li>
-          </ul>
-        </div>
-        <div class="p-6 rounded-2xl border bg-white">
-          <h3 class="text-2xl font-bold text-aap-maroon">
-            Perizinan, Sertifikasi & Klien
-          </h3>
-          <ul class="mt-3 space-y-2 text-gray-800">
-            <li>• NPWP • NIB • IUP OPK Jasa Pertambangan</li>
-            <li>• SMKP • K3LH • Roadmap ISO</li>
-            <li>• Portofolio klien nikel & batubara (ROM, port, hauling)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- KATA-KATA DARI BOS -->
-    <section class="py-16">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="rounded-3xl border p-8 md:p-12 bg-white">
-          <h2 class="text-3xl md:text-4xl font-extrabold">
-            Sambutan Direktur Utama
-          </h2>
-          <p class="mt-4 text-lg leading-relaxed text-gray-800">
-            “Di AAP, reputasi dibangun dari konsistensi hasil. Setiap ton
-            material yang bergerak, setiap jam kerja yang aman, dan setiap
-            keputusan berbasis data adalah komitmen kami kepada klien dan
-            masyarakat. Kami memilih bekerja rapi, presisi, dan transparan—agar
-            mitra merasa tenang, tim bangga, dan lingkungan tetap terjaga.” —
-            <b>Direktur Utama PT Andalan Artha Primanusa</b>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SAFETY -->
-    <section id="safety" class="py-16 bg-aap-ivory">
-      <div
-        class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-start"
-      >
-        <div class="p-6 rounded-2xl border bg-white">
-          <h3 class="text-2xl font-bold text-aap-maroon">
-            Fatigue Management Controls
-          </h3>
-          <p class="mt-3 text-gray-800">
-            Kelelahan adalah salah satu penyebab kecelakaan paling umum. Program
-            manajemen & kontrol kelelahan kami memastikan jam kerja, rotasi, dan
-            pengecekan kondisi kru berjalan disiplin.
-          </p>
-        </div>
-        <div class="p-6 rounded-2xl border bg-white">
-          <h3 class="text-2xl font-bold text-aap-maroon">Safety Procedures</h3>
-          <p class="mt-3 text-gray-800">
-            Prosedur keselamatan dimonitor berkala untuk mengelola bahaya &
-            risiko—dari pit hingga workshop—sesuai standar K3 dan SMKP.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESG / COMMUNITY -->
-    <section class="py-16">
-      <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-10">
-        <div class="p-6 rounded-2xl border bg-white">
-          <h3 class="text-2xl font-bold text-aap-maroon">ESG & Community</h3>
-          <p class="mt-3 text-gray-800">
-            Reklamasi & revegetasi, monitoring kualitas air, serta program
-            pengembangan masyarakat & tenaga kerja lokal.
-          </p>
-        </div>
-        <div class="p-6 rounded-2xl border bg-white">
-          <h3 class="text-2xl font-bold text-aap-maroon">Transparansi KPI</h3>
-          <p class="mt-3 text-gray-800">
-            Pelaporan berkala, dashboard produksi, dan audit internal untuk
-            kemitraan jangka panjang yang akuntabel.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROYEK -->
-    <section id="proyek" class="py-16">
-      <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Cuplikan Proyek</h2>
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <img
-            src="assets/proyek-1.jpg"
-            class="rounded-2xl border object-cover aspect-[4/3]"
-            alt="Proyek A"
-          />
-          <img
-            src="assets/proyek-2.jpg"
-            class="rounded-2xl border object-cover aspect-[4/3]"
-            alt="Proyek B"
-          />
-          <img
-            src="assets/proyek-3.jpg"
-            class="rounded-2xl border object-cover aspect-[4/3]"
-            alt="Proyek C"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="py-16 bg-aap-ivory">
-      <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold">FAQ</h2>
-        <div class="mt-6 divide-y rounded-2xl border bg-white">
-          <details class="group p-6">
-            <summary
-              class="flex cursor-pointer list-none items-center justify-between font-medium"
-            >
-              Area operasi utama?<span>＋</span>
-            </summary>
-            <div class="mt-2 text-gray-700">
-              Sulawesi dan Kalimantan untuk nikel & batubara.
-            </div>
-          </details>
-          <details class="group p-6">
-            <summary
-              class="flex cursor-pointer list-none items-center justify-between font-medium"
-            >
-              Bagaimana model kontrak?<span>＋</span>
-            </summary>
-            <div class="mt-2 text-gray-700">
-              OB removal, selective mining, hauling, dan lump-sum / hybrid
-              sesuai KPI.
-            </div>
-          </details>
-          <details class="group p-6">
-            <summary
-              class="flex cursor-pointer list-none items-center justify-between font-medium"
-            >
-              Standar safety?<span>＋</span>
-            </summary>
-            <div class="mt-2 text-gray-700">
-              SMKP, K3LH, toolbox meeting, audit internal, dan Zero LTI sebagai
-              target.
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- KONTAK -->
-    <section id="kontak" class="py-16">
-      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-extrabold">Kontak</h2>
-          <div class="mt-6 space-y-3 text-gray-800">
-            <div>
-              📍 Jl. Taman Pluit Kencana No.2 Blok N Kav.2, Pluit, Penjaringan,
-              Jakarta 14450
-            </div>
-            <div>
-              ✉️
-              <a class="underline" href="mailto:hello@andalan-artha.co.id"
-                >hello@andalan-artha.co.id</a
-              >
-            </div>
-            <div>
-              📞
-              <a class="underline" href="tel:+6281110105622"
-                >+62 811-101-056-22</a
-              >
-            </div>
-            <div>
-              💬
-              <a
-                class="underline"
-                href="https://wa.me/6281110105622?text=Halo%20AAP,%20saya%20butuh%20informasi%20lebih%20lanjut."
-                target="_blank"
-                rel="noopener"
-                >WhatsApp</a
-              >
-            </div>
-          </div>
-        </div>
-        <form
-          class="space-y-4"
-          onsubmit="event.preventDefault(); alert('Terima kasih! Kami akan menghubungi Anda segera.'); this.reset();"
-        >
-          <div class="grid md:grid-cols-2 gap-4">
-            <input
-              required
-              type="text"
-              placeholder="Nama"
-              class="w-full rounded-xl bg-white border px-4 py-3 outline-none focus:border-aap-maroon"
-            />
-            <input
-              type="text"
-              placeholder="Perusahaan"
-              class="w-full rounded-xl bg-white border px-4 py-3 outline-none focus:border-aap-maroon"
-            />
-          </div>
-          <div class="grid md:grid-cols-2 gap-4">
-            <input
-              required
-              type="email"
-              placeholder="Email"
-              class="w-full rounded-xl bg-white border px-4 py-3 outline-none focus:border-aap-maroon"
-            />
-            <input
-              type="tel"
-              placeholder="Telepon"
-              class="w-full rounded-xl bg-white border px-4 py-3 outline-none focus:border-aap-maroon"
-            />
-          </div>
-          <textarea
-            required
-            rows="5"
-            placeholder="Deskripsi kebutuhan..."
-            class="w-full rounded-xl bg-white border px-4 py-3 outline-none focus:border-aap-maroon"
-          ></textarea>
-          <div class="flex flex-wrap items-center gap-3">
-            <a
-              href="Company%20Profile%20AAP.pdf"
-              class="px-5 py-3 rounded-xl border border-aap-maroon text-aap-maroon hover:bg-aap-maroon hover:text-white"
-              >Download Company Profile</a
-            >
-            <button
-              class="px-6 py-3 rounded-xl bg-aap-maroon text-white font-semibold hover:bg-aap-maroonDark"
-            >
-              Kirim
-            </button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-10 bg-aap-ivory">
-      <div class="max-w-7xl mx-auto px-4">
         <div
-          class="flex flex-wrap items-center justify-between gap-4 border-t pt-6 text-sm text-gray-600"
+          class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/0"
+        ></div>
+        <div
+          class="absolute right-0 bottom-4 md:bottom-6 px-3 md:px-6 flex justify-end"
         >
-          <div>
-            © <span id="year"></span> PT Andalan Artha Primanusa. All rights
-            reserved.
+          <div
+            class="glass rounded-xl px-6 py-4 md:px-8 md:py-6 text-white border border-white/10 max-w-lg md:max-w-xl text-right mr-6 md:mr-12 w-full"
+          >
+            <p
+              class="text-[11px] md:text-sm uppercase tracking-[.25em] text-white/80 mb-2"
+              data-i18n="hero_tag"
+            >
+              SELAMAT DATANG DI ANDALAN GROUP
+            </p>
           </div>
-          <div>Built with HRGA Department.</div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide absolute inset-0" data-index="1" id="slide-2">
+        <img
+          src="./images/foto1.png"
+          alt="Hauling — truk beriringan menuju stockpile"
+          class="w-full h-full object-cover obj-left-30"
+          loading="lazy"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/0"
+        ></div>
+        <div
+          class="absolute right-0 bottom-4 md:bottom-6 px-3 md:px-6 flex justify-end"
+        >
+          <div
+            class="glass rounded-xl px-6 py-4 md:px-8 md:py-6 text-white border border-white/10 max-w-lg md:max-w-xl text-right mr-6 md:mr-12 w-full"
+          >
+            <p
+              class="text-[11px] md:text-sm uppercase tracking-[.25em] text-white/80 mb-2"
+              data-i18n="hero_tag"
+            >
+              Operational Excellence
+            </p>
+            <h2
+              class="text-xl md:text-3xl font-extrabold leading-snug"
+              data-i18n="hero_title"
+            >
+              Mitra Strategis dari Pit ke Port
+            </h2>
+            <p
+              class="mt-2 text-sm md:text-base text-white/80"
+              data-i18n="hero_desc"
+            >
+              End-to-end mining services: perencanaan, penambangan, hauling,
+              hingga shipping.
+            </p>
+            <div class="mt-4 flex items-center gap-3 justify-end">
+              <a
+                href="#investor"
+                class="px-4 py-2 rounded-lg bg-[--maroon] text-sm md:text-base text-white focus-ring"
+                data-i18n="hero_btn1"
+                >Info Investor</a
+              >
+              <a
+                href="#bisnis"
+                class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-sm md:text-base focus-ring"
+                data-i18n="hero_btn2"
+                >Unit Bisnis</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide absolute inset-0" data-index="2" id="slide-3">
+        <img
+          src="./images/foto2.png"
+          alt="Loading ke tongkang — koordinasi pit ke port"
+          class="w-full h-full object-cover obj-left-30"
+          loading="lazy"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/0"
+        ></div>
+        <div
+          class="absolute right-0 bottom-4 md:bottom-6 px-3 md:px-6 flex justify-end"
+        >
+          <div
+            class="glass rounded-xl px-6 py-4 md:px-8 md:py-6 text-white border border-white/10 max-w-lg md:max-w-xl text-right mr-6 md:mr-12 w-full"
+          >
+            <p
+              class="text-[11px] md:text-sm uppercase tracking-[.25em] text-white/80 mb-2"
+              data-i18n="hero_tag"
+            >
+              Operational Excellence
+            </p>
+            <h2
+              class="text-xl md:text-3xl font-extrabold leading-snug"
+              data-i18n="hero_title"
+            >
+              Mitra Strategis dari Pit ke Port
+            </h2>
+            <p
+              class="mt-2 text-sm md:text-base text-white/80"
+              data-i18n="hero_desc"
+            >
+              End-to-end mining services: perencanaan, penambangan, hauling,
+              hingga shipping.
+            </p>
+            <div class="mt-4 flex items-center gap-3 justify-end">
+              <a
+                href="#investor"
+                class="px-4 py-2 rounded-lg bg-[--maroon] text-sm md:text-base text-white focus-ring"
+                data-i18n="hero_btn1"
+                >Info Investor</a
+              >
+              <a
+                href="#bisnis"
+                class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-sm md:text-base focus-ring"
+                data-i18n="hero_btn2"
+                >Unit Bisnis</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="absolute bottom-5 inset-x-0">
+        <div
+          class="flex items-center justify-center gap-2"
+          role="tablist"
+          aria-label="Slide navigation"
+        >
+          <button
+            class="dot w-2.5 h-2.5 rounded-full bg-white/50 focus-ring"
+            aria-label="Go to slide 1"
+            role="tab"
+          ></button>
+          <button
+            class="dot w-2.5 h-2.5 rounded-full bg-white/30 focus-ring"
+            aria-label="Go to slide 2"
+            role="tab"
+          ></button>
+          <button
+            class="dot w-2.5 h-2.5 rounded-full bg-white/30 focus-ring"
+            aria-label="Go to slide 3"
+            role="tab"
+          ></button>
+        </div>
+      </div>
+    </section>
+    <!-- ================== /HERO SLIDER ================== -->
+
+    <!-- ================== TENTANG ================== -->
+    <section
+      id="tentang"
+      class="relative overflow-hidden py-16 md:py-20 bg-white"
+    >
+      <!-- Ornaments -->
+      <div
+        class="pointer-events-none absolute -top-24 -right-24 w-[28rem] h-[28rem] rounded-full opacity-15 blur-3xl"
+        style="
+          background: radial-gradient(
+            circle at center,
+            var(--maroon) 0%,
+            transparent 60%
+          );
+        "
+      ></div>
+      <div
+        class="pointer-events-none absolute -bottom-24 -left-24 w-[28rem] h-[28rem] rounded-full opacity-15 blur-3xl"
+        style="
+          background: radial-gradient(
+            circle at center,
+            #d4af37 0%,
+            transparent 60%
+          );
+        "
+      ></div>
+
+      <div
+        class="relative max-w-7xl mx-auto px-4 md:px-6 grid md:grid-cols-12 gap-10 items-start"
+      >
+        <!-- Kiri -->
+        <div class="md:col-span-7">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[--maroon]/5 text-[--maroon] border border-[--maroon]/15"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-3.5 h-3.5"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.88L18.18 22 12 18.77 5.82 22 7 14.15l-5-4.88 6.91-1.01L12 2z"
+              />
+            </svg>
+            Tentang Kami
+          </div>
+
+          <h2
+            class="mt-3 text-2xl md:text-3xl font-extrabold tracking-tight text-[--ink]"
+          >
+            Tentang Andalan Group
+          </h2>
+
+          <div
+            class="mt-5 bg-gradient-to-br from-white to-gray-50 p-5 rounded-2xl border border-black/5 shadow-sm"
+          >
+            <p class="text-[15px] leading-relaxed text-[--ink]/80 text-justify">
+              Andalan Group merupakan perusahaan jasa pertambangan yang bergerak
+              pada komoditas nikel dan batubara dengan mengedepankan pemanfaatan
+              data serta teknologi dalam setiap tahapan kegiatan. Kami
+              berkomitmen meningkatkan produktivitas melalui pengelolaan armada
+              yang efisien, mengoptimalkan keselamatan kerja dengan penerapan
+              standar SMKP yang ketat, serta memastikan kepatuhan penuh terhadap
+              ketentuan lingkungan agar kegiatan operasional berjalan
+              berkesinambungan dan memberikan nilai tambah bagi para pemangku
+              kepentingan.
+            </p>
+            <div
+              class="mt-4 h-1.5 rounded-full bg-gradient-to-r from-[--maroon] via-[--maroon]/60 to-[--gold]"
+            ></div>
+          </div>
+
+          <!-- Poin singkat -->
+          <ul
+            class="mt-6 grid sm:grid-cols-3 gap-3 text-[13px] text-[--ink]/80"
+          >
+            <li class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[--maroon]"></span
+              >Data-driven operations
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[--maroon]"></span
+              >Safety-first (K3)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[--maroon]"></span>ESG
+              compliance
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kanan: ISO -->
+        <div class="md:col-span-5 grid grid-cols-1 gap-4">
+          <div
+            class="group relative rounded-xl p-[1px] bg-gradient-to-br from-[--maroon]/30 via-transparent to-[--gold]/40"
+          >
+            <div class="rounded-xl border border-black/5 bg-white/90 p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="shrink-0 rounded-lg p-2 bg-[--maroon]/10 text-[--maroon]"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2l3 4h5l-3.5 3 1 5-5-2.5L7 14l1-5L4.5 6H10l2-4z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-[--ink]">ISO 9001:2015</div>
+                  <p class="text-xs text-[--ink]/70 mt-1">
+                    Andalan Group menerapkan <b>Sistem Manajemen Mutu</b> untuk
+                    menjamin layanan yang konsisten dan berkualitas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-xl p-[1px] bg-gradient-to-br from-[--maroon]/30 via-transparent to-[--gold]/40"
+          >
+            <div class="rounded-xl border border-black/5 bg-white/90 p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="shrink-0 rounded-lg p-2 bg-[--maroon]/10 text-[--maroon]"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2a7 7 0 00-7 7v2H3v6h18v-6h-2V9a7 7 0 00-7-7zM7 11V9a5 5 0 0110 0v2H7z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-[--ink]">ISO 45001:2018</div>
+                  <p class="text-xs text-[--ink]/70 mt-1">
+                    Andalan Group mengimplementasikan
+                    <b>Sistem Manajemen Kesehatan dan Keselamatan Kerja (K3)</b>
+                    berstandar global.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-xl p-[1px] bg-gradient-to-br from-[--maroon]/30 via-transparent to-[--gold]/40"
+          >
+            <div class="rounded-xl border border-black/5 bg-white/90 p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="shrink-0 rounded-lg p-2 bg-[--maroon]/10 text-[--maroon]"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M5 21s6-1 10-5 5-10 5-10-6 1-10 5-5 10-5 10zm7-14c1.657 0 3-1.79 3-4-2.21 0-4 1.343-4 3 0 .552.448 1 1 1z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-[--ink]">ISO 14001:2015</div>
+                  <p class="text-xs text-[--ink]/70 mt-1">
+                    Andalan Group menjalankan
+                    <b>Sistem Manajemen Lingkungan</b> untuk memastikan
+                    operasional berkelanjutan dan ramah lingkungan.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-xl p-[1px] bg-gradient-to-br from-[--maroon]/30 via-transparent to-[--gold]/40"
+          >
+            <div class="rounded-xl border border-black/5 bg-white/90 p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="shrink-0 rounded-lg p-2 bg-[--maroon]/10 text-[--maroon]"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4zm-1 13l6-6-1.4-1.4L11 12.2l-2.6-2.6L7 11l4 4z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold text-[--ink]">SMKP</div>
+                  <p class="text-xs text-[--ink]/70 mt-1">
+                    Andalan Group berkomitmen pada
+                    <b>Sistem Manajemen Keselamatan Pertambangan</b> sesuai
+                    regulasi nasional.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Kanan -->
+      </div>
+
+      <!-- ===== Galeri 2 Perusahaan ===== -->
+      <!-- Tambahkan di <head> -->
+      <script
+        defer
+        src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+      ></script>
+      <style>
+        [x-cloak] {
+          display: none !important;
+        }
+      </style>
+
+      <!-- Section -->
+      <div
+        class="relative max-w-7xl mx-auto px-4 md:px-6 mt-10"
+        x-data="{open:null}"
+      >
+        <h3 class="text-xl md:text-2xl font-bold text-[--ink]">
+          Perusahaan Kami
+        </h3>
+        <p class="text-sm text-[--ink]/70 mt-1 text-justify">
+          Di bawah naungan <b>Andalan Group</b>, setiap unit perusahaan hadir
+          sebagai bagian dari ekosistem terpadu yang mendukung industri
+          pertambangan dari hulu ke hilir. Dengan pengalaman luas, standar
+          keselamatan kerja kelas dunia, dan komitmen pada keberlanjutan (ESG),
+          kami membangun bisnis yang tidak hanya fokus pada produktivitas,
+          tetapi juga memberikan nilai tambah bagi mitra, karyawan, dan
+          masyarakat sekitar. Melalui inovasi, teknologi modern, dan budaya
+          kerja profesional, Andalan Group terus memperkuat posisinya sebagai
+          mitra strategis yang terpercaya di sektor pertambangan nasional maupun
+          global.
+        </p>
+
+        <div class="mt-5 grid md:grid-cols-2 gap-5">
+          <!-- AAP -->
+          <figure
+            class="group relative overflow-hidden rounded-2xl shadow border border-black/5"
+          >
+            <img
+              src="./images/logo-aap.jpg"
+              alt="Andalan Artha Primanusa"
+              class="w-full h-64 md:h-80 object-cover"
+            />
+            <figcaption
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-end"
+            >
+              <div class="p-5 text-white">
+                <div class="text-xs uppercase tracking-widest text-white/80">
+                  Subsidiary
+                </div>
+                <div class="text-lg md:text-2xl font-extrabold">
+                  Andalan Artha Primanusa
+                </div>
+              </div>
+            </figcaption>
+
+            <!-- Pindahkan klik ke button -->
+            <button
+              type="button"
+              class="absolute inset-0 cursor-pointer"
+              aria-label="Buka deskripsi AAP"
+              @click="open = open==='aap' ? null : 'aap'"
+            ></button>
+          </figure>
+
+          <!-- ABN -->
+          <figure
+            class="group relative overflow-hidden rounded-2xl shadow border border-black/5"
+          >
+            <img
+              src="./images/logo-abn.png"
+              alt="Andalan Bara Nusantara"
+              class="w-full h-64 md:h-80 object-cover"
+            />
+            <figcaption
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-end"
+            >
+              <div class="p-5 text-white">
+                <div class="text-xs uppercase tracking-widest text-white/80">
+                  Subsidiary
+                </div>
+                <div class="text-lg md:text-2xl font-extrabold">
+                  Andalan Bara Nusantara
+                </div>
+              </div>
+            </figcaption>
+
+            <button
+              type="button"
+              class="absolute inset-0 cursor-pointer"
+              aria-label="Buka deskripsi ABN"
+              @click="open = open==='abn' ? null : 'abn'"
+            ></button>
+          </figure>
+        </div>
+
+        <!-- Panel Deskripsi -->
+        <div class="mt-6 space-y-4">
+          <!-- AAP -->
+          <div
+            x-cloak
+            x-show="open==='aap'"
+            x-transition
+            class="p-5 rounded-xl bg-white shadow border border-black/10"
+          >
+            <h4 class="text-lg font-bold text-[--ink]">
+              PT Andalan Artha Primanusa (AAP)
+            </h4>
+            <ul
+              class="list-disc pl-5 mt-2 text-sm text-[--ink]/70 space-y-1"
+              data-i18n="subsidiaries.aap.subsidiaries_desc"
+            >
+              <li>
+                <b>Kontraktor pertambangan nikel & batubara</b> dengan
+                pengalaman lapangan yang kuat.
+              </li>
+              <li>
+                <b>Layanan end-to-end</b>: perencanaan, operasi tambang,
+                logistik, hingga support services.
+              </li>
+              <li>
+                <b>Armada modern & teknologi terkini</b> untuk produktivitas
+                optimal.
+              </li>
+              <li>
+                <b>Standar K3 (HSE) & ESG tinggi</b>, mengutamakan keselamatan
+                dan keberlanjutan.
+              </li>
+              <li>
+                <b>Fokus pada KPI & efisiensi</b>, memberikan hasil terukur bagi
+                mitra.
+              </li>
+            </ul>
+          </div>
+
+          <!-- ABN -->
+          <div
+            x-cloak
+            x-show="open==='abn'"
+            x-transition
+            class="p-5 rounded-xl bg-white shadow border border-black/10"
+          >
+            <h4 class="text-lg font-bold text-[--ink]">
+              PT Andalan Bara Nusantara (ABN)
+            </h4>
+            <ul
+              class="list-disc pl-5 mt-2 text-sm text-[--ink]/70 space-y-1"
+              data-i18n="subsidiaries.abn.subsidiaries_desc"
+            >
+              <li>
+                <b>Perusahaan trading & distribusi batubara</b> dengan jaringan
+                pasar luas.
+              </li>
+              <li>
+                <b>Supply chain lengkap</b> dari site ke port hingga pemasaran.
+              </li>
+              <li>
+                <b>Layanan domestik & ekspor</b> dengan kepatuhan penuh
+                regulasi.
+              </li>
+              <li>
+                <b>Mitra terpercaya</b> bagi industri energi & manufaktur.
+              </li>
+              <li>
+                <b>Integrasi logistik & shipping</b> untuk kelancaran rantai
+                pasok.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom decorative shape (Premium Wave v2) -->
+      <div class="pointer-events-none absolute inset-x-0 -bottom-10">
+        <svg
+          viewBox="0 0 1440 340"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full block"
+          style="transform: translateZ(0)"
+        >
+          <defs>
+            <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="var(--maroon)" />
+              <stop offset="55%" stop-color="#5a1f22" />
+              <stop offset="100%" stop-color="var(--ink)" />
+            </linearGradient>
+            <linearGradient id="sheenGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,.18)" />
+              <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+            </linearGradient>
+            <filter id="grain">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.9"
+                numOctaves="2"
+                stitchTiles="stitch"
+              />
+              <feColorMatrix type="saturate" values="0" />
+              <feComponentTransfer>
+                <feFuncA type="table" tableValues="0 .06" />
+              </feComponentTransfer>
+              <feBlend mode="multiply" in2="SourceGraphic" />
+            </filter>
+            <radialGradient id="vignette" cx="50%" cy="30%" r="80%">
+              <stop offset="60%" stop-color="rgba(0,0,0,0)" />
+              <stop offset="100%" stop-color="rgba(0,0,0,.22)" />
+            </radialGradient>
+            <linearGradient id="softMask" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="white" />
+              <stop offset="100%" stop-color="black" />
+            </linearGradient>
+            <mask id="fadeTop">
+              <rect
+                x="0"
+                y="0"
+                width="1440"
+                height="340"
+                fill="url(#softMask)"
+              />
+            </mask>
+          </defs>
+
+          <!-- Garis lurus lebih bawah -->
+          <path
+            d="M0,260 L1440,260 L1440,340 L0,340 Z"
+            fill="url(#waveGrad)"
+            opacity=".92"
+          />
+          <path
+            d="M0,280 L1440,280 L1440,340 L0,340 Z"
+            fill="url(#sheenGrad)"
+            opacity=".45"
+          />
+
+          <g mask="url(#fadeTop)">
+            <rect
+              x="0"
+              y="0"
+              width="1440"
+              height="340"
+              fill="url(#vignette)"
+              opacity=".35"
+            />
+            <rect
+              x="0"
+              y="0"
+              width="1440"
+              height="340"
+              fill="transparent"
+              filter="url(#grain)"
+            />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ================== LOKASI / ARCGIS (Shape Indonesia) ================== -->
+    <section id="lokasi" class="relative bg-white pt-24 pb-16">
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <!-- Header -->
+        <div class="flex items-end justify-between gap-4 mb-4">
+          <div>
+            <div
+              class="text-xs font-semibold px-3 py-1 rounded-full bg-[--maroon]/5 text-[--maroon] border border-[--maroon]/15"
+            >
+              Lokasi
+            </div>
+            <h3
+              class="mt-2 text-2xl md:text-3xl font-extrabold text-[--ink]"
+              data-i18n="maps_title"
+            >
+              Peta Bentuk Indonesia
+            </h3>
+            <p class="text-sm text-[--ink]/70" data-i18n="maps_desc">
+              Menampilkan shape negara Indonesia (Living Atlas).
+            </p>
+          </div>
+        </div>
+
+        <!-- Info cards -->
+        <div class="mt-4 grid sm:grid-cols-3 gap-4">
+          <!-- Card: Lokasi Site -->
+          <div
+            class="rounded-2xl border border-black/5 bg-gradient-to-br from-white to-gray-50 px-5 py-4 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-start gap-3">
+              <div
+                class="shrink-0 p-2 rounded-xl bg-[--maroon]/10 text-[--maroon]"
+              >
+                <!-- pin icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div
+                  class="text-[11px] font-semibold uppercase tracking-wide text-[--maroon]/80"
+                  data-i18n="maps_site_label"
+                >
+                  Lokasi Site
+                </div>
+                <div class="text-sm mt-0.5" data-i18n="maps_site_value">
+                  Indonesia (nasional)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Cakupan -->
+          <div
+            class="rounded-2xl border border-black/5 bg-gradient-to-br from-white to-gray-50 px-5 py-4 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-start gap-3">
+              <div
+                class="shrink-0 p-2 rounded-xl bg-[--maroon]/10 text-[--maroon]"
+              >
+                <!-- globe icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.9 9h-3.2a15.4 15.4 0 00-1.3-4.6 8.03 8.03 0 014.5 4.6zM12 4c1.2 1.4 2.2 3.6 2.6 6H9.4C9.8 7.6 10.8 5.4 12 4zM4.1 11a8.03 8.03 0 014.5-4.6 15.4 15.4 0 00-1.3 4.6H4.1zM8 13a14.6 14.6 0 001.4 4.9A8.05 8.05 0 014.5 13H8zm3.6 0h2.8c-.4 2.4-1.4 4.6-2.6 6-1.2-1.4-2.2-3.6-2.6-6h2.4zm4 0h3.5a8.05 8.05 0 01-4.9 4.9c.6-1.6 1.1-3.2 1.4-4.9z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div
+                  class="text-[11px] font-semibold uppercase tracking-wide text-[--maroon]/80"
+                  data-i18n="maps_scope_label"
+                >
+                  Cakupan
+                </div>
+                <div class="text-sm mt-0.5" data-i18n="maps_scope_value">
+                  Seluruh wilayah kepulauan
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Penjelasan Proyek -->
+          <div
+            class="rounded-2xl border border-black/5 bg-gradient-to-br from-white to-gray-50 px-5 py-4 shadow-sm hover:shadow-md transition"
+          >
+            <div class="flex items-start gap-3">
+              <div
+                class="shrink-0 p-2 rounded-xl bg-[--maroon]/10 text-[--maroon]"
+              >
+                <!-- doc icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7h5v11H6V4h8v5z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div
+                  class="text-[11px] font-semibold uppercase tracking-wide text-[--maroon]/80"
+                  data-i18n="maps_proj_label"
+                >
+                  Penjelasan Proyek
+                </div>
+                <div class="text-sm mt-0.5" data-i18n="maps_proj_value">
+                  Visualisasi geometri Indonesia untuk konteks rencana &amp;
+                  operasi (pit–port).
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- subtle divider -->
+        <div
+          class="mt-6 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent"
+        ></div>
+
+        <!-- Map -->
+        <div
+          class="overflow-hidden rounded-2xl border border-black/5 shadow mt-6"
+        >
+          <div id="indoMap" class="w-full h-[520px]"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================== FOOTER ================== -->
+    <footer
+      id="kontak"
+      class="relative bg-gradient-to-tr from-[--maroon] via-[#5a1f22] to-[#0e0e0e] text-slate-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-white/10 pb-6"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[--maroon] to-[--gold] grid place-items-center text-white font-bold shadow-lg"
+            >
+              AG
+            </div>
+            <span class="text-lg font-semibold">Andalan Group</span>
+          </div>
+          <nav class="flex flex-wrap items-center gap-6 text-sm font-medium">
+            <a
+              href="#"
+              class="hover:text-[--gold] transition"
+              data-i18n="footer_privacy"
+              >Kebijakan Privasi</a
+            >
+            <a
+              href="#"
+              class="hover:text-[--gold] transition"
+              data-i18n="footer_terms"
+              >Syarat & Ketentuan</a
+            >
+            <a href="#tentang" class="hover:text-[--gold] transition"
+              >Tentang Kami</a
+            >
+            <a href="#lokasi" class="hover:text-[--gold] transition">Lokasi</a>
+          </nav>
+        </div>
+
+        <div
+          class="mt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-sm text-slate-300" data-i18n="footer_copy">
+            © 2025 Andalan Group. Seluruh hak cipta.
+          </p>
+          <div class="flex gap-4">
+            <a
+              href="#"
+              class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition"
+              aria-label="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M22.225 0H1.771C.792 0 0 .774 0 1.728v20.543C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.728C24 .774 23.2 0 22.225 0zM7.12 20.452H3.56V9h3.56v11.452zM5.34 7.568a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM20.452 20.452h-3.56v-5.58c0-1.33-.026-3.044-1.855-3.044-1.857 0-2.143 1.45-2.143 2.947v5.677h-3.56V9h3.415v1.561h.048c.477-.9 1.642-1.855 3.379-1.855 3.614 0 4.284 2.377 4.284 5.467v6.279z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition"
+              aria-label="Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.259.058 2.092.271 2.58.45.648.238 1.11.523 1.596 1.009.486.486.771.948 1.009 1.596.179.488.392 1.321.45 2.58.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.259-.271 2.092-.45 2.58a3.92 3.92 0 0 1-1.009 1.596 3.92 3.92 0 0 1-1.596 1.009c-.488.179-1.321.392-2.58.45-1.266.058-1.646.07-4.85.07s-3.552-.012-4.85-.07c-1.259-.058-2.092-.271-2.58-.45a3.92 3.92 0 0 1-1.009-1.596 3.92 3.92 0 0 1-1.009-1.596c-.179-.488-.392-1.321-.45-2.58C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.058-1.259.271-2.092.45-2.58a3.92 3.92 0 0 1 1.009-1.596A3.92 3.92 0 0 1 5.288 2.683c.488-.179 1.321-.392 2.58-.45C9.134 2.175 9.514 2.163 12 2.163zm0 5.527a5.333 5.333 0 1 1 0 10.666 5.333 5.333 0 0 1 0-10.666zm5.65-2.807a1.244 1.244 0 1 1-2.488 0 1.244 1.244 0 0 1 2.488 0z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition"
+              aria-label="X"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M18.244 2H21l-6.5 7.43L22 22h-6.406l-5.01-6.546L4.74 22H2l7.035-8.04L2 2h6.5l4.49 5.938L18.244 2Zm-1.117 18h1.844L7.01 4H5.055l12.072 16Z"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
 
+    <!-- ================== SCRIPTS ================== -->
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+(function () {
+  "use strict";
+
+  /* ===== Utilities ===== */
+  const $  = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  /* ===== I18N ===== */
+  const DICT = {
+    ID: {
+      meta_title: "Andalan Group — Kontraktor Tambang",
+      meta_desc: "Andalan Group: mitra strategis dari pit ke port. End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping.",
+      nav_about: "Tentang Kami", nav_business: "Bisnis", nav_esg: "ESG", nav_investor: "Investor", nav_contact: "Kontak",
+      cta_consult: "Konsultasi",
+      hero_tag: "sELAMAT DATANG di Andalan Group",
+      hero_title: "Mitra Strategis dari Pit ke Port",
+      hero_desc: "End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping.",
+      hero_btn1: "Info Investor", hero_btn2: "Unit Bisnis",
+      footer_copy: "© 2025 Andalan Group. Seluruh hak cipta.", footer_privacy: "Kebijakan Privasi", footer_terms: "Syarat & Ketentuan",
+      subsidiaries_title: "Perusahaan Kami",
+      subsidiaries_desc: "Unit perusahaan dalam naungan Andalan Group.",
+      subsidiaries: {
+        aap: { name: "PT Andalan Artha Primanusa (AAP)", subsidiaries_desc:
+`- **Kontraktor pertambangan nikel & batubara** dengan pengalaman lapangan yang kuat.
+- **Layanan end-to-end**: perencanaan tambang, operasi, logistik, hingga support services.
+- **Armada modern & teknologi terkini** untuk produktivitas optimal.
+- **Standar K3 (HSE) & ESG tinggi**, mengutamakan keselamatan dan keberlanjutan.
+- **Fokus pada KPI & efisiensi**, memberikan hasil yang terukur bagi mitra.
+`},
+        abn: { name: "PT Andalan Bara Nusantara (ABN)", subsidiaries_desc:
+`- **Perusahaan trading & distribusi batubara** dengan jaringan pasar luas.
+- **Mengelola supply chain lengkap** dari site ke port hingga pemasaran.
+- **Layanan domestik & ekspor** dengan kepatuhan penuh regulasi.
+- **Mitra terpercaya** bagi industri energi & manufaktur.
+- **Integrasi logistik & shipping** untuk kelancaran rantai pasok.
+`},
+      },
+      maps_title: "Peta Lokasi Proyek Tambang",
+      maps_desc: "Menampilkan representasi geospasial wilayah operasional Andalan Group di Indonesia, sebagai dasar transparansi dan akuntabilitas pengelolaan pertambangan.",
+      maps_site_label: "Lokasi Site", maps_site_value: "Pulau Sulawesi & Pulau Kalimantan",
+      maps_scope_label: "Cakupan",
+      maps_scope_value: "Kegiatan pertambangan nikel dan batubara, termasuk infrastruktur pendukung rantai pasok dari pit hingga port.",
+      maps_proj_label: "Tentang Proyek",
+      maps_proj_value: "Proyek tambang Andalan Group dirancang untuk memadukan produktivitas, keselamatan kerja, dan keberlanjutan lingkungan. Kami mengoptimalkan teknologi modern guna memastikan efisiensi operasional, menerapkan Sistem Manajemen K3 secara ketat untuk melindungi tenaga kerja, serta mengedepankan praktik pertambangan hijau yang sejalan dengan regulasi nasional dan standar global. Dengan pendekatan ini, kami berkomitmen menghadirkan nilai tambah berkelanjutan bagi pemangku kepentingan, masyarakat sekitar, dan generasi mendatang.",
+    },
+    EN: {
+      meta_title: "Andalan Group — Mining Contractor",
+      meta_desc: "Andalan Group: your strategic partner from pit to port. End-to-end mining services: planning, mining, hauling, and shipping.",
+      nav_about: "About", nav_business: "Business", nav_esg: "ESG", nav_investor: "Investors", nav_contact: "Contact",
+      cta_consult: "Consultation",
+      hero_tag: "Operational Excellence",
+      hero_title: "Strategic Partner from Pit to Port",
+      hero_desc: "End-to-end mining services: planning, mining, hauling, and shipping.",
+      hero_btn1: "Investor Info", hero_btn2: "Business Units",
+      footer_copy: "© 2025 Andalan Group. All rights reserved.", footer_privacy: "Privacy Policy", footer_terms: "Terms & Conditions",
+      subsidiaries_title: "Our Companies",
+      subsidiaries_desc: "Subsidiary companies under Andalan Group.",
+      subsidiaries: {
+        aap: { name: "PT Andalan Artha Primanusa (AAP)", subsidiaries_desc:
+"Nickel & coal mining contractor. End-to-end services: mine planning, operations, logistics, and support services with strong commitments to KPIs, HSE, and ESG." },
+        abn: { name: "PT Andalan Bara Nusantara (ABN)", subsidiaries_desc:
+"Mining trading & distribution (primarily coal). Manages the supply chain from site to port and commercializes products for domestic and export markets with full regulatory compliance." },
+      },
+      maps_title: "Mining Project Location Map",
+      maps_desc: "Depicting the geospatial representation of Andalan Group’s operational areas in Indonesia, highlighting transparency and accountability in mining management.",
+      maps_site_label: "Site Location", maps_site_value: "Sulawesi Island & Kalimantan Island",
+      maps_scope_label: "Coverage",
+      maps_scope_value: "Nickel and coal mining operations, including supporting infrastructure across the pit-to-port supply chain.",
+      maps_proj_label: "About the Project",
+      maps_proj_value: "Andalan Group’s mining projects are designed to integrate productivity, occupational safety, and environmental sustainability. We leverage modern technology to ensure operational efficiency, enforce strict Occupational Health and Safety (K3) systems to safeguard our workforce, and promote green mining practices aligned with national regulations and global standards. Through this approach, we are committed to delivering sustainable value to stakeholders, surrounding communities, and future generations.",
+    },
+  };
+
+  const i18n = {
+    apply(lang) {
+      const L = lang === "EN" ? "EN" : "ID";
+      const dict = DICT[L];
+      $$("[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        if (key && dict[key] && !(node.tagName === "TITLE" || node.tagName === "META")) node.textContent = dict[key];
+      });
+      $$("[data-i18n-placeholder]").forEach((node) => {
+        const key = node.getAttribute("data-i18n-placeholder");
+        if (key && dict[key]) node.setAttribute("placeholder", dict[key]);
+      });
+      document.title = dict.meta_title;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", dict.meta_desc);
+      document.documentElement.setAttribute("lang", L === "EN" ? "en" : "id");
+      $("#langLabel") && ($("#langLabel").textContent = L);
+      $("#langBtnSm") && ($("#langBtnSm").textContent = L);
+      $("#langBtnSmMenu") && ($("#langBtnSmMenu").textContent = L);
+      localStorage.setItem("site_lang", L);
+    },
+    toggle() {
+      const curr = localStorage.getItem("site_lang") || "ID";
+      this.apply(curr === "ID" ? "EN" : "ID");
+    },
+    init() {
+      const initial = localStorage.getItem("site_lang") || "ID";
+      this.apply(initial);
+      $("#langBtn")?.addEventListener("click", () => this.toggle());
+      $("#langBtnSm")?.addEventListener("click", () => this.toggle());
+      $("#langBtnSmMenu")?.addEventListener("click", () => this.toggle());
+    },
+  };
+
+  /* ===== Alpine component for header nav ===== */
+  window.nav = function () {
+    return {
+      open: "",          // desktop dropdown key yg terbuka
+      mobileOpen: true, // visibility mobile menu
+      mobile: { open: "" }, // mobile section yg terbuka
+
+      toggle(key) { this.open = (this.open === key) ? "" : key; },
+      toggleMobile(key) { this.mobile.open = (this.mobile.open === key) ? "" : key; },
+      closeAll() { this.open = ""; this.mobile.open = ""; },
+
+      init() {
+        // Tutup dropdown saat viewport < md (beralih ke mobile)
+        const onResize = () => { if (window.innerWidth < 768) this.open = ""; };
+        window.addEventListener("resize", onResize);
+
+        // TIDAK ada auto-close saat klik link (biar "diem")
+        // ESC untuk menutup mobile menu bila terbuka
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && this.mobileOpen) {
+            this.mobileOpen = true;
+            this.mobile.open = "";
+          }
+        });
+      },
+    };
+  };
+
+  /* ===== (Opsional) Hero Slider ===== */
+  function initHeroSlider() {
+    const region = $("#home");
+    const slides = $$(".slide", region);
+    const dots = $$(".dot", region);
+    if (!region || slides.length === 0 || dots.length === 0) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const INTERVAL = 6000;
+    let index = 0, timer = null;
+
+    const updateDots = (i) => {
+      dots.forEach((d, k) => {
+        d.classList.toggle("bg-white/50", k === i);
+        d.classList.toggle("bg-white/30", k !== i);
+        d.setAttribute("aria-selected", k === i ? "true" : "true");
+        d.setAttribute("tabindex", k === i ? "0" : "-1");
+      });
+    };
+
+    const show = (i) => {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, k) => {
+        s.classList.toggle("active", k === index);
+        s.setAttribute("aria-hidden", k === index ? "true" : "true");
+      });
+      updateDots(index);
+    };
+
+    const next = () => show(index + 1);
+    const prev = () => show(index - 1);
+
+    const start = () => { if (!prefersReduced) { stop(); timer = setInterval(next, INTERVAL); } };
+    const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+    slides.forEach((s, k) => {
+      s.setAttribute("role", "group");
+      s.setAttribute("aria-roledescription", "slide");
+      s.setAttribute("aria-label", `Slide ${k + 1} dari ${slides.length}`);
+      s.setAttribute("aria-hidden", k === 0 ? "true" : "true");
+    });
+
+    dots.forEach((d, k) => {
+      d.setAttribute("role", "tab");
+      d.setAttribute("aria-controls", `slide-${k + 1}`);
+      d.addEventListener("click", () => { show(k); start(); });
+      d.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(k); start(); }
+        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); start(); }
+        if (e.key === "ArrowRight") { e.preventDefault(); next(); start(); }
+      });
+    });
+
+    region.addEventListener("mouseenter", stop);
+    region.addEventListener("mouseleave", start);
+    region.addEventListener("focusin", stop);
+    region.addEventListener("focusout", start);
+    region.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { e.preventDefault(); prev(); start(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); next(); start(); }
+    });
+
+    document.addEventListener("visibilitychange", () => { document.hidden ? stop() : start(); });
+
+    let touchX = null;
+    region.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+    region.addEventListener("touchend", (e) => {
+      if (touchX == null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
+      touchX = null; start();
+    }, { passive: true });
+
+    show(0); start();
+  }
+
+  /* ===== (Opsional) Gallery overlay tap ===== */
+  function initGalleryOverlay() {
+    $$(".card").forEach((card) => {
+      const overlay = $(".card-overlay", card);
+      if (!overlay) return;
+      let toggled = true;
+      card.addEventListener("click", (e) => {
+        if (window.matchMedia("(hover: none)").matches) {
+          toggled = !toggled;
+          overlay.style.opacity = toggled ? "1" : "";
+          overlay.style.transform = toggled ? "translateY(0)" : "";
+          e.preventDefault();
+        }
+      });
+    });
+  }
+
+  /* ===== Boot ===== */
+  i18n.init();
+  initHeroSlider();
+  initGalleryOverlay();
+})();
+</script>
+
+
+
+
+    <!-- ArcGIS: render shape negara Indonesia -->
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer",
+      ], function (Map, MapView, FeatureLayer, Graphic, GraphicsLayer) {
+        const map = new Map({
+          basemap: "gray-vector",
+        });
+
+        const view = new MapView({
+          container: "indoMap",
+          map,
+          center: [118, -2],
+          zoom: 4,
+        });
+
+        const graphicsLayer = new GraphicsLayer();
+        map.add(graphicsLayer);
+
+        // Data polyline per site
+        const sites = [
+          {
+            name: "Site DBK Kalteng",
+            color: [212, 175, 55, 1], // emas
+            desc: "Operasi pertambangan nikel & batubara di Kalimantan Tengah dengan armada modern dan standar K3/ESG.",
+            path: [
+              [113.9245671469289, -0.10630759988170269],
+              [113.96155202110043, -0.1264484586886141],
+              [113.96619677914924, -0.1735201036509011],
+              [113.91027132093677, -0.18421484449966385],
+              [113.87193915831443, -0.14799017580602936],
+              [113.92257310608318, -0.10667259718361777],
+            ],
+          },
+          {
+            name: "Site PT POS Halmahera Timur",
+            color: [72, 39, 40, 1], // maroon
+            desc: "Tambang nikel strategis di Halmahera Timur, mendukung rantai pasok domestik dan ekspor.",
+            path: [
+              [127.8, 0.4],
+              [128.10151397129096, 0.7324381216724647],
+              [128.4, 1.0],
+            ],
+          },
+          {
+            name: "Site SBS Sumatera Selatan",
+            color: [0, 102, 204, 1], // biru
+            desc: "Tambang batubara di Sumatera Selatan dengan layanan terintegrasi dari pit ke port.",
+            path: [
+              [103.5, -4.0],
+              [103.75147600097807, -3.7093903468670226],
+              [104.0, -3.4],
+            ],
+          },
+          {
+            name: "Head Office Jakarta PT AAP & PT ABN",
+            color: [0, 153, 102, 1], // hijau
+            desc: "Kantor pusat di Jakarta sebagai pusat manajemen & koordinasi seluruh unit bisnis.",
+            path: [
+              [106.5, -6.4],
+              [106.79029648621649, -6.121412499853428],
+              [107.0, -5.9],
+            ],
+          },
+        ];
+
+        // Tambahkan polyline untuk setiap site
+        sites.forEach((s) => {
+          const polyline = {
+            type: "polyline",
+            paths: s.path,
+          };
+
+          const lineSymbol = {
+            type: "simple-line",
+            color: s.color,
+            width: 3,
+          };
+
+          const lineGraphic = new Graphic({
+            geometry: polyline,
+            symbol: lineSymbol,
+            attributes: { name: s.name, desc: s.desc },
+            popupTemplate: {
+              title: "{name}",
+              content: "{desc}",
+            },
+          });
+
+          graphicsLayer.add(lineGraphic);
+        });
+      });
     </script>
   </body>
 </html>
