@@ -1,0 +1,516 @@
+{
+  "unique_total": 73,
+  "items": [
+    {
+      "UNIT TYPE": "",
+      "UNIT BRAND": "",
+      "UNIT SERIES": "LIGHT VEHICLE RENTAL",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 10
+    },
+    {
+      "UNIT TYPE": "",
+      "UNIT BRAND": "EMERALD",
+      "UNIT SERIES": "POWER PLANT",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "395",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "EXCA LOADER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "773",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "HOULER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 18
+    },
+    {
+      "UNIT TYPE": "773E",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "HOULER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "A40G",
+      "UNIT BRAND": "VOLVO",
+      "UNIT SERIES": "HOULER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 12
+    },
+    {
+      "UNIT TYPE": "AROCS 4045 AK",
+      "UNIT BRAND": "MERCEDES-BENZ",
+      "UNIT SERIES": "FUEL TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "AROCS 4045 AK",
+      "UNIT BRAND": "MERCEDES-BENZ",
+      "UNIT SERIES": "HOULER CG",
+      "UNIT CLASSIFICATION": "DUMP TRUCK OB 40T",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "AROCS 4045 AK",
+      "UNIT BRAND": "MERCEDES-BENZ",
+      "UNIT SERIES": "HOULER CG",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "AROCS 4045 AK",
+      "UNIT BRAND": "MERCEDES-BENZ",
+      "UNIT SERIES": "WATER TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "AS 4006",
+      "UNIT BRAND": "HIMOINSA",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 12
+    },
+    {
+      "UNIT TYPE": "AS 4007",
+      "UNIT BRAND": "HIMOINSA",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "AS 4008",
+      "UNIT BRAND": "HIMOINSA",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "AS 4009",
+      "UNIT BRAND": "HIMOINSA",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "BJ3259DLPKE-RA",
+      "UNIT BRAND": "FOTON",
+      "UNIT SERIES": "DUMP TRUCK 30T",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 20
+    },
+    {
+      "UNIT TYPE": "BJ3259DLPKE-RA",
+      "UNIT BRAND": "FOTON",
+      "UNIT SERIES": "FUEL TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "BJ3259DLPKE-RA",
+      "UNIT BRAND": "FOTON",
+      "UNIT SERIES": "LUBE TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "BJ3259DLPKE-RA",
+      "UNIT BRAND": "FOTON",
+      "UNIT SERIES": "MOBILE CRANE",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "BJ3259DLPKE-RA",
+      "UNIT BRAND": "FOTON",
+      "UNIT SERIES": "WATER TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "BMGS 7",
+      "UNIT BRAND": "MITSUBISHI",
+      "UNIT SERIES": "GENSET",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "CANTER HDX 125",
+      "UNIT BRAND": "MITSUBISHI",
+      "UNIT SERIES": "SUPPORT LIFTING",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "CANTER PS 136",
+      "UNIT BRAND": "MITSUBISHI",
+      "UNIT SERIES": "BUS ",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 5
+    },
+    {
+      "UNIT TYPE": "CAT 160K",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "MOTOR GRADER 16FT",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "CPLT V15 MH",
+      "UNIT BRAND": "KUBOTA",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 3
+    },
+    {
+      "UNIT TYPE": "D10",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "BULLDOZER SBS",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "D8",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "BULLDOZER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "D85ESS-2",
+      "UNIT BRAND": "KOMATSU",
+      "UNIT SERIES": "BULLDOZER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 4
+    },
+    {
+      "UNIT TYPE": "D85ESS-2",
+      "UNIT BRAND": "KOMATSU",
+      "UNIT SERIES": "BULLDOZER 20T",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "D8T",
+      "UNIT BRAND": "CATERPILLAR",
+      "UNIT SERIES": "BULLDOZER 40T",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "DAW-500S",
+      "UNIT BRAND": "DENYO",
+      "UNIT SERIES": "WELDING MACHINE",
+      "UNIT CLASSIFICATION": "SUPPORTING MAINTENANCE",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "DONGFENG",
+      "UNIT BRAND": "PUMA",
+      "UNIT SERIES": "AIR COMPRESOR",
+      "UNIT CLASSIFICATION": "SUPPORTING MAINTENANCE",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "ELECTRIC",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "AIR COMPRESOR",
+      "UNIT CLASSIFICATION": "SUPPORTING MAINTENANCE",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "FM 500",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "FUEL TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "FM 500",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "SUPPORT LIFTING",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "FM 500",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "WATER TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "FM 700",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "WATER TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "FMX 400",
+      "UNIT BRAND": "VOLVO",
+      "UNIT SERIES": "HOULER CG",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "GD 535",
+      "UNIT BRAND": "KOMATSU",
+      "UNIT SERIES": "MOTOR GRADER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "GD705A-4",
+      "UNIT BRAND": "KOMATSU",
+      "UNIT SERIES": "MOTOR GRADER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "GDS15000553",
+      "UNIT BRAND": "GENERAL POWER",
+      "UNIT SERIES": "POWER PLANT",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "GR2605II",
+      "UNIT BRAND": "XCMG",
+      "UNIT SERIES": "MOTOR GRADER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "HILIGHT V5+",
+      "UNIT BRAND": "ATLAS COPCO",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "HILUX SERI E",
+      "UNIT BRAND": "TOYOTA",
+      "UNIT SERIES": "LIGHT VEHICLE",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 4
+    },
+    {
+      "UNIT TYPE": "HILUX SERI G",
+      "UNIT BRAND": "TOYOTA",
+      "UNIT SERIES": "LIGHT VEHICLE",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 13
+    },
+    {
+      "UNIT TYPE": "HILUX SERI G",
+      "UNIT BRAND": "TOYOTA",
+      "UNIT SERIES": "LIGHT VEHICLE ",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "HINO 500",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "SUPPORT LIFTING",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "HINO FL 235",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "WATER TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "HINO FM260JD",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "HOULER CG",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 4
+    },
+    {
+      "UNIT TYPE": "HINO FM280JD",
+      "UNIT BRAND": "HINO",
+      "UNIT SERIES": "HOULER CG",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 18
+    },
+    {
+      "UNIT TYPE": "HYUNDAI",
+      "UNIT BRAND": "HYUNDAI 10KVA",
+      "UNIT SERIES": "GENSET",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "ISUZU",
+      "UNIT BRAND": "ISUZU 20KVA",
+      "UNIT SERIES": "GENSET",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "MULTI",
+      "UNIT BRAND": "MULTI",
+      "UNIT SERIES": "SUPPORT LIFTING",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "P22D5",
+      "UNIT BRAND": "AGG 20KVA",
+      "UNIT SERIES": "GENSET",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "PC-200-10MO",
+      "UNIT BRAND": "KOMATSU",
+      "UNIT SERIES": "EXCA GENERAL",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 4
+    },
+    {
+      "UNIT TYPE": "PM10",
+      "UNIT BRAND": "PM06/JHONDER",
+      "UNIT SERIES": "DEWATERING PUMP",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "PM6",
+      "UNIT BRAND": "PM10/DOOSAN",
+      "UNIT SERIES": "DEWATERING PUMP",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "PUMP",
+      "UNIT BRAND": "ATLAS COPCO",
+      "UNIT SERIES": "DEWATERING PUMP",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "PUMP",
+      "UNIT BRAND": "MITSUBISHI",
+      "UNIT SERIES": "DEWATERING PUMP",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "SUPER HD PS 136",
+      "UNIT BRAND": "MITSUBISHI",
+      "UNIT SERIES": "FUEL TRUCK",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "TR50D",
+      "UNIT BRAND": "TEREX",
+      "UNIT SERIES": "HOULER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 20
+    },
+    {
+      "UNIT TYPE": "U130-10",
+      "UNIT BRAND": "ATLAS COPCO",
+      "UNIT SERIES": "AIR COMPRESOR",
+      "UNIT CLASSIFICATION": "SUPPORTING MAINTENANCE",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "WEICHAI 400 V",
+      "UNIT BRAND": "WEICHAI",
+      "UNIT SERIES": "LIGHTING TOWER",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "WINSTON",
+      "UNIT BRAND": "WISTON 50KVA",
+      "UNIT SERIES": "GENSET",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "XDA40",
+      "UNIT BRAND": "XCMG",
+      "UNIT SERIES": "HOULER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 19
+    },
+    {
+      "UNIT TYPE": "XDA45",
+      "UNIT BRAND": "XCMG",
+      "UNIT SERIES": "HOULER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "YANMAR",
+      "UNIT BRAND": "SWAN",
+      "UNIT SERIES": "AIR COMPRESOR",
+      "UNIT CLASSIFICATION": "SUPPORTING MAINTENANCE",
+      "COUNT": 3
+    },
+    {
+      "UNIT TYPE": "ZX 470LC-5G",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "EXCA LOADER CG",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "ZX LDX 225",
+      "UNIT BRAND": "DOOSAN",
+      "UNIT SERIES": "EXCA GENERAL",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "ZX200-5G",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "EXCAVATOR 20T",
+      "UNIT CLASSIFICATION": "SUPPORT EQUIPMENT",
+      "COUNT": 2
+    },
+    {
+      "UNIT TYPE": "ZX350-5G",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "EXCA LOADER CG",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 4
+    },
+    {
+      "UNIT TYPE": "ZX350-7G",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "EXCAVATOR 30T",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 1
+    },
+    {
+      "UNIT TYPE": "ZX490LC-7G",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "EXCAVATOR 40T",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 4
+    },
+    {
+      "UNIT TYPE": "ZX870LCH-5G",
+      "UNIT BRAND": "HITACHI",
+      "UNIT SERIES": "EXCA LOADER OB",
+      "UNIT CLASSIFICATION": "MAIN EQUIPMENT",
+      "COUNT": 5
+    }
+  ]
+}

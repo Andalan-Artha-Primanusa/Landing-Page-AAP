@@ -1,0 +1,874 @@
+{
+  "meta": {
+    "source": "user_text",
+    "parsed_header_row": [
+      "Vol. Yearly",
+      "",
+      "Production",
+      "",
+      "Unit",
+      "2025-01-24 00:00:00",
+      "2025-02-24 00:00:00",
+      "2025-03-24 00:00:00",
+      "2025-04-24 00:00:00",
+      "2025-05-24 00:00:00",
+      "2025-06-24 00:00:00",
+      "2025-07-24 00:00:00",
+      "2025-08-24 00:00:00",
+      "2025-09-24 00:00:00",
+      "2025-10-24 00:00:00",
+      "2025-11-24 00:00:00",
+      "2025-12-24 00:00:00",
+      "2025.0"
+    ],
+    "month_columns": [
+      "2025-01-24",
+      "2025-02-24",
+      "2025-03-24",
+      "2025-04-24",
+      "2025-05-24",
+      "2025-06-24",
+      "2025-07-24",
+      "2025-08-24",
+      "2025-09-24",
+      "2025-10-24",
+      "2025-11-24",
+      "2025-12-24"
+    ],
+    "total_field_label": "2025.0",
+    "records_count": 9,
+    "flat_count": 70
+  },
+  "records": [
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "year": 2025,
+      "months": {
+        "2025-01-24": 820857.138,
+        "2025-02-24": 803099.814,
+        "2025-03-24": 623005.0,
+        "2025-04-24": 838165.033,
+        "2025-05-24": 858175.0,
+        "2025-06-24": 726280.0,
+        "2025-07-24": 146430.0,
+        "2025-08-24": null,
+        "2025-09-24": null,
+        "2025-10-24": null,
+        "2025-11-24": null,
+        "2025-12-24": null
+      },
+      "total": 4816011.985
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "year": 2025,
+      "months": {
+        "2025-01-24": 94892.08,
+        "2025-02-24": 107387.63,
+        "2025-03-24": 102098.02,
+        "2025-04-24": 197628.47,
+        "2025-05-24": 240842.22,
+        "2025-06-24": 189659.91,
+        "2025-07-24": 68131.0,
+        "2025-08-24": null,
+        "2025-09-24": null,
+        "2025-10-24": null,
+        "2025-11-24": null,
+        "2025-12-24": null
+      },
+      "total": 1000639.3300000001
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "year": 2025,
+      "months": {
+        "2025-01-24": 8.65042833922494,
+        "2025-02-24": 7.4785132514797095,
+        "2025-03-24": 6.102028227383841,
+        "2025-04-24": 4.241114820147118,
+        "2025-05-24": 3.563224919617499,
+        "2025-06-24": 3.829380705706335,
+        "2025-07-24": 2.149241901630682,
+        "2025-08-24": null,
+        "2025-09-24": null,
+        "2025-10-24": null,
+        "2025-11-24": null,
+        "2025-12-24": null
+      },
+      "total": 4.812934931310365
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "year": 2025,
+      "months": {
+        "2025-01-24": null,
+        "2025-02-24": null,
+        "2025-03-24": null,
+        "2025-04-24": null,
+        "2025-05-24": null,
+        "2025-06-24": 28281.0,
+        "2025-07-24": 591295.6660674157,
+        "2025-08-24": 794166.8859999999,
+        "2025-09-24": 831705.943321339,
+        "2025-10-24": 0.0,
+        "2025-11-24": 0.0,
+        "2025-12-24": 0.0
+      },
+      "total": 2245449.4953887546
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "year": 2025,
+      "months": {
+        "2025-01-24": null,
+        "2025-02-24": null,
+        "2025-03-24": null,
+        "2025-04-24": null,
+        "2025-05-24": null,
+        "2025-06-24": null,
+        "2025-07-24": 80124.56074999998,
+        "2025-08-24": 208458.35003030064,
+        "2025-09-24": 211603.30130568685,
+        "2025-10-24": 0.0,
+        "2025-11-24": 0.0,
+        "2025-12-24": 0.0
+      },
+      "total": 500186.21208598744
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BTS",
+      "unit": null,
+      "year": 2025,
+      "months": {
+        "2025-01-24": null,
+        "2025-02-24": null,
+        "2025-03-24": null,
+        "2025-04-24": null,
+        "2025-05-24": null,
+        "2025-06-24": null,
+        "2025-07-24": 7.3797055551086554,
+        "2025-08-24": 3.809714918517599,
+        "2025-09-24": 3.9304960659372608,
+        "2025-10-24": null,
+        "2025-11-24": null,
+        "2025-12-24": null
+      },
+      "total": 4.489227094094184
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "year": 2025,
+      "months": {
+        "2025-01-24": 820857.138,
+        "2025-02-24": 803099.814,
+        "2025-03-24": 623005.0,
+        "2025-04-24": 838165.033,
+        "2025-05-24": 858175.0,
+        "2025-06-24": 754561.0,
+        "2025-07-24": 737725.6660674157,
+        "2025-08-24": 794166.8859999999,
+        "2025-09-24": 831705.943321339,
+        "2025-10-24": 0.0,
+        "2025-11-24": 0.0,
+        "2025-12-24": 0.0
+      },
+      "total": 7091580.480388755
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "year": 2025,
+      "months": {
+        "2025-01-24": 94892.08,
+        "2025-02-24": 107387.63,
+        "2025-03-24": 102098.02,
+        "2025-04-24": 197628.47,
+        "2025-05-24": 240842.22,
+        "2025-06-24": 189659.91,
+        "2025-07-24": 148255.56074999998,
+        "2025-08-24": 208458.35003030064,
+        "2025-09-24": 211603.30130568685,
+        "2025-10-24": 0.0,
+        "2025-11-24": 0.0,
+        "2025-12-24": 0.0
+      },
+      "total": 1500825.5420859875
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "year": 2025,
+      "months": {
+        "2025-01-24": 8.65042833922494,
+        "2025-02-24": 7.4785132514797095,
+        "2025-03-24": 6.102028227383841,
+        "2025-04-24": 4.241114820147118,
+        "2025-05-24": 3.563224919617499,
+        "2025-06-24": 3.9784949808317425,
+        "2025-07-24": 4.976040442162072,
+        "2025-08-24": 3.809714918517599,
+        "2025-09-24": 3.9304960659372608,
+        "2025-10-24": null,
+        "2025-11-24": null,
+        "2025-12-24": null
+      },
+      "total": 4.7251197967567995
+    }
+  ],
+  "flat": [
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-01-24",
+      "value": 820857.138,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-02-24",
+      "value": 803099.814,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-03-24",
+      "value": 623005.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-04-24",
+      "value": 838165.033,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-05-24",
+      "value": 858175.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-06-24",
+      "value": 726280.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "KKL",
+      "item": "Overburden Kungkilan",
+      "unit": "bcm",
+      "date": "2025-07-24",
+      "value": 146430.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-01-24",
+      "value": 94892.08,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-02-24",
+      "value": 107387.63,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-03-24",
+      "value": 102098.02,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-04-24",
+      "value": 197628.47,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-05-24",
+      "value": 240842.22,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-06-24",
+      "value": 189659.91,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining Kungkilan",
+      "unit": "Ton",
+      "date": "2025-07-24",
+      "value": 68131.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-01-24",
+      "value": 8.65042833922494,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-02-24",
+      "value": 7.4785132514797095,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-03-24",
+      "value": 6.102028227383841,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-04-24",
+      "value": 4.241114820147118,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-05-24",
+      "value": 3.563224919617499,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-06-24",
+      "value": 3.829380705706335,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR Kungkilan",
+      "unit": null,
+      "date": "2025-07-24",
+      "value": 2.149241901630682,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-06-24",
+      "value": 28281.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-07-24",
+      "value": 591295.6660674157,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-08-24",
+      "value": 794166.8859999999,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-09-24",
+      "value": 831705.943321339,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-10-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-11-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "BTS",
+      "item": "Overburden BTS",
+      "unit": "bcm",
+      "date": "2025-12-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "date": "2025-07-24",
+      "value": 80124.56074999998,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "date": "2025-08-24",
+      "value": 208458.35003030064,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "date": "2025-09-24",
+      "value": 211603.30130568685,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "date": "2025-10-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "date": "2025-11-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BTS",
+      "unit": "Ton",
+      "date": "2025-12-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BTS",
+      "unit": null,
+      "date": "2025-07-24",
+      "value": 7.3797055551086554,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BTS",
+      "unit": null,
+      "date": "2025-08-24",
+      "value": 3.809714918517599,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BTS",
+      "unit": null,
+      "date": "2025-09-24",
+      "value": 3.9304960659372608,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-01-24",
+      "value": 820857.138,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-02-24",
+      "value": 803099.814,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-03-24",
+      "value": 623005.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-04-24",
+      "value": 838165.033,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-05-24",
+      "value": 858175.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-06-24",
+      "value": 754561.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-07-24",
+      "value": 737725.6660674157,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-08-24",
+      "value": 794166.8859999999,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-09-24",
+      "value": 831705.943321339,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-10-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-11-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": "ALL BGG",
+      "item": "Overburden BGG",
+      "unit": "bcm",
+      "date": "2025-12-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-01-24",
+      "value": 94892.08,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-02-24",
+      "value": 107387.63,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-03-24",
+      "value": 102098.02,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-04-24",
+      "value": 197628.47,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-05-24",
+      "value": 240842.22,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-06-24",
+      "value": 189659.91,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-07-24",
+      "value": 148255.56074999998,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-08-24",
+      "value": 208458.35003030064,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-09-24",
+      "value": 211603.30130568685,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-10-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-11-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "Coal Mining BGG",
+      "unit": "Ton",
+      "date": "2025-12-24",
+      "value": 0.0,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-01-24",
+      "value": 8.65042833922494,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-02-24",
+      "value": 7.4785132514797095,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-03-24",
+      "value": 6.102028227383841,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-04-24",
+      "value": 4.241114820147118,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-05-24",
+      "value": 3.563224919617499,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-06-24",
+      "value": 3.9784949808317425,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-07-24",
+      "value": 4.976040442162072,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-08-24",
+      "value": 3.809714918517599,
+      "year": 2025
+    },
+    {
+      "series": "Vol. Yearly",
+      "group": null,
+      "item": "SR BGG",
+      "unit": null,
+      "date": "2025-09-24",
+      "value": 3.9304960659372608,
+      "year": 2025
+    }
+  ]
+}
