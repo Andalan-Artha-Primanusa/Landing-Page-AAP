@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Andalan Group — Kontraktor Tambang</title>
+    <meta
+      name="description"
+      content="Andalan Group: mitra strategis dari pit ke port. End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping."
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <!-- ================= THEME ================= -->
+    <style>
+      :root {
+        --ink: #0e0e0e;
+        --maroon: #5a1f22; /* maroon konsisten dgn footer */
+        --maroon-2: #3f1417; /* maroon lebih gelap */
+        --gold: #d4af37; /* emas klasik */
+      }
+
+      .focus-ring:focus {
+        outline: 2px solid rgba(212, 175, 55, 0.35);
+        outline-offset: 2px;
+      }
+      .menu-panel {
+        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.18);
+      }
+
+      /* Hero slice/rays (MAROON) */
+      .slice-right {
+        position: relative;
+        background: linear-gradient(180deg, var(--maroon), var(--maroon-2));
+        color: #fff;
+      }
+      .slice-right::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -7vw;
+        height: 100%;
+        width: 14vw;
+        background: inherit;
+        transform: skewX(18deg);
+        box-shadow: -8px 0 24px rgba(0, 0, 0, 0.18);
+        pointer-events: none;
+      }
+      @media (max-width: 1024px) {
+        .slice-right::before {
+          display: none;
+        }
+      }
+
+      /* Utilities konsisten tema */
+      .badge-maroon {
+        background: linear-gradient(
+          to bottom right,
+          var(--maroon),
+          var(--maroon-2)
+        );
+        box-shadow: 0 6px 20px rgba(90, 31, 34, 0.25);
+      }
+      .icon-gold {
+        color: var(--gold);
+      }
+      .card-maroon {
+        background: linear-gradient(180deg, #fff, #f7f7f8);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        box-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
+      }
+      .bullet-gold {
+        background: var(--gold);
+      }
+      .btn-maroon {
+        background: var(--maroon);
+        color: #fff;
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.25);
+      }
+      .btn-maroon:hover {
+        filter: brightness(0.98);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .divider-gold {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        height: 1px;
+      }
+
+      /* Rays dekoratif (opsional) */
+      .soft-rays {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+            60% 40% at 70% 30%,
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0) 60%
+          ),
+          repeating-conic-gradient(
+            from 0deg,
+            rgba(255, 255, 255, 0.25) 0 8deg,
+            rgba(255, 255, 255, 0) 8deg 16deg
+          );
+        mix-blend-mode: screen;
+        opacity: 0.45;
+        animation: rays-rotate 18s linear infinite;
+        transform-origin: 70% 30%;
+      }
+      @keyframes rays-rotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-[15px] text-[--ink]">
+    <!-- ================= NAVBAR ================= -->
+    <header
+      class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-black/5 supports-[backdrop-filter]:bg-white/70"
+      x-data="nav()"
+      @keydown.escape="closeAll()"
+    >
+      <div class="max-w-7xl mx-auto px-4 md:px-6">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <a
+            href="../index.html"
+            class="flex items-center gap-3 group focus-ring"
+            aria-label="Andalan Group"
+          >
+            <span class="font-extrabold tracking-tight text-lg md:text-xl">
+              <span
+                class="bg-gradient-to-r from-[--ink] to-[--maroon] bg-clip-text text-transparent"
+                >Andalan</span
+              >
+              <span class="text-[--maroon] group-hover:text-[--gold] transition"
+                >Group</span
+              >
+            </span>
+          </a>
+
+          <!-- Desktop Nav -->
+          <nav
+            class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium"
+            aria-label="Navigasi utama"
+            @click.outside="open=''"
+          >
+            <!-- Tentang -->
+            <div class="relative" :aria-expanded="open==='about'">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                @click="toggle('about')"
+                :aria-expanded="open==='about'"
+              >
+                <span>Tentang Kami</span>
+                <svg
+                  class="w-4 h-4 ml-1 transition-transform duration-200"
+                  :class="open==='about' && 'rotate-180'"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                x-cloak
+                x-show="open==='about'"
+                x-transition.origin.top.left
+                @click.stop
+                role="menu"
+                class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden"
+              >
+                <a href="../index.html#visi-misi" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
+              <a href="../index.html#core-values" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Core Values</a>
+              <a href="../index.html#manajemen" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Manajemen</a>
+              <a href="../index.html#struktur" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Struktur Perseroan</a>
+              <a href="../index.html#sejarah" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tonggak Sejarah</a>
+              </div>
+            </div>
+
+            <!-- Bisnis Kami -->
+            <div class="relative" :aria-expanded="open==='business'">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                @click="toggle('business')"
+                :aria-expanded="open==='business'"
+              >
+                <span>Bisnis Kami</span>
+                <svg
+                  class="w-4 h-4 ml-1 transition-transform duration-200"
+                  :class="open==='business' && 'rotate-180'"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                x-cloak
+                x-show="open==='business'"
+                x-transition.origin.top.left
+                @click.stop
+                role="menu"
+                class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden"
+              >
+                <a
+                  href="#aap"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Andalan Artha Primanusa (AAP)</a
+                >
+                <a
+                  href="#abn"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Andalan Bumi Nusantara (ABN)</a
+                >
+              </div>
+            </div>
+
+            <!-- ESG -->
+            <div class="relative" :aria-expanded="open==='esg'">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                @click="toggle('esg')"
+                :aria-expanded="open==='esg'"
+              >
+                <span>ESG</span>
+                <svg
+                  class="w-4 h-4 ml-1 transition-transform duration-200"
+                  :class="open==='esg' && 'rotate-180'"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                x-cloak
+                x-show="open==='esg'"
+                x-transition.origin.top.left
+                @click.stop
+                role="menu"
+                class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden"
+              >
+                <a
+                  href="#kerangka"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Kerangka Keberlanjutan</a
+                >
+                <a
+                  href="#lingkungan"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Aspek Lingkungan</a
+                >
+                <a
+                  href="#sosial"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Aspek Sosial</a
+                >
+                <a
+                  href="#tata-kelola"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Tata Kelola</a
+                >
+                <a
+                  href="#k3"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Kesehatan & Keselamatan</a
+                >
+              </div>
+            </div>
+
+            <!-- Investor -->
+            <div class="relative" :aria-expanded="open==='investor'">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                @click="toggle('investor')"
+                :aria-expanded="open==='investor'"
+              >
+                <span>Investor</span>
+                <svg
+                  class="w-4 h-4 ml-1 transition-transform duration-200"
+                  :class="open==='investor' && 'rotate-180'"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                x-cloak
+                x-show="open==='investor'"
+                x-transition.origin.top.left
+                @click.stop
+                role="menu"
+                class="menu-panel absolute left-0 top-[calc(100%+8px)] w-80 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden"
+              >
+                <a
+                  href="#pemegang-saham"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Informasi Pemegang Saham</a
+                >
+                <a
+                  href="#kinerja-keuangan"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Kinerja Keuangan</a
+                >
+                <a
+                  href="#pusat-investor"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Pusat Investor</a
+                >
+                <a
+                  href="#laporan-terbaru"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Laporan & Info Terbaru</a
+                >
+              </div>
+            </div>
+
+            <!-- Media -->
+            <div class="relative" :aria-expanded="open==='media'">
+              <button
+                type="button"
+                aria-haspopup="menu"
+                class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+                @click="toggle('media')"
+                :aria-expanded="open==='media'"
+              >
+                <span>Media</span>
+                <svg
+                  class="w-4 h-4 ml-1 transition-transform duration-200"
+                  :class="open==='media' && 'rotate-180'"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                x-cloak
+                x-show="open==='media'"
+                x-transition.origin.top.left
+                @click.stop
+                role="menu"
+                class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden"
+              >
+                <a
+                  href="#press"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Press</a
+                >
+                <a
+                  href="#galeri"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Galeri</a
+                >
+                <a
+                  href="#downloads"
+                  role="menuitem"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]"
+                  >Downloads</a
+                >
+              </div>
+            </div>
+
+            <!-- Tim Kami -->
+            <a
+              href="#tim"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring"
+              >Tim Kami</a
+            >
+
+            <!-- CTA -->
+            <a
+              href="#cta"
+              class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-maroon font-semibold transition focus-ring"
+            >
+              Konsultasi
+            </a>
+
+            <!-- Lang -->
+            <button
+              id="langBtn"
+              class="ml-2 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-black/10 text-[13px] text-gray-700 hover:bg-gray-50 focus-ring"
+              aria-label="Ganti Bahasa"
+            >
+              <span id="langLabel">ID</span>
+              <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M6 9l6 6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </nav>
+
+          <!-- Mobile buttons -->
+          <div class="md:hidden flex items-center gap-2">
+            <button
+              id="langBtnSm"
+              class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 text-xs border border-black/10 focus-ring"
+              aria-label="Ganti Bahasa (mobile)"
+            >
+              ID
+            </button>
+            <button
+              class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 focus-ring"
+              aria-label="Buka Menu"
+              :aria-expanded="mobileOpen"
+              @click="mobileOpen=!mobileOpen"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        class="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5"
+        x-show="mobileOpen"
+        x-transition.origin.top
+        x-cloak
+      >
+        <nav
+          class="flex flex-col px-6 py-4 gap-2 text-base font-medium"
+          aria-label="Navigasi mobile"
+        >
+          <!-- Tentang -->
+          <button
+            @click="toggleMobile('about')"
+            class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring"
+            aria-controls="m-about"
+            :aria-expanded="mobile.open==='about'"
+          >
+            <span>Tentang Kami</span>
+            <svg
+              class="w-4 h-4 ml-1 transition-transform"
+              :class="mobile.open==='about' && 'rotate-180'"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div
+            id="m-about"
+            x-show="mobile.open==='about'"
+            x-collapse
+            class="ml-4 flex flex-col gap-1"
+            x-cloak
+          >
+            <a
+              href="#visi-misi"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Visi & Misi</a
+            >
+            <a
+              href="#strategi"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Core Values</a
+            >
+            <a
+              href="#manajemen"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Manajemen</a
+            >
+            <a
+              href="#struktur"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Struktur Perseroan</a
+            >
+            <a
+              href="#sejarah"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Tonggak Sejarah</a
+            >
+          </div>
+
+          <!-- Bisnis -->
+          <button
+            @click="toggleMobile('business')"
+            class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring"
+            aria-controls="m-business"
+            :aria-expanded="mobile.open==='business'"
+          >
+            <span>Bisnis Kami</span>
+            <svg
+              class="w-4 h-4 ml-1 transition-transform"
+              :class="mobile.open==='business' && 'rotate-180'"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div
+            id="m-business"
+            x-show="mobile.open==='business'"
+            x-collapse
+            class="ml-4 flex flex-col gap-1"
+            x-cloak
+          >
+            <a href="#aap" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Andalan Artha Primanusa (AAP)</a
+            >
+            <a href="#abn" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Andalan Bumi Nusantara (ABN)</a
+            >
+          </div>
+
+          <!-- ESG -->
+          <button
+            @click="toggleMobile('esg')"
+            class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring"
+            aria-controls="m-esg"
+            :aria-expanded="mobile.open==='esg'"
+          >
+            <span>ESG</span>
+            <svg
+              class="w-4 h-4 ml-1 transition-transform"
+              :class="mobile.open==='esg' && 'rotate-180'"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div
+            id="m-esg"
+            x-show="mobile.open==='esg'"
+            x-collapse
+            class="ml-4 flex flex-col gap-1"
+            x-cloak
+          >
+            <a
+              href="#kerangka"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Kerangka Keberlanjutan</a
+            >
+            <a
+              href="#lingkungan"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Aspek Lingkungan</a
+            >
+            <a
+              href="#sosial"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Aspek Sosial</a
+            >
+            <a
+              href="#tata-kelola"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Tata Kelola</a
+            >
+            <a href="#k3" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Kesehatan & Keselamatan</a
+            >
+          </div>
+
+          <!-- Investor -->
+          <button
+            @click="toggleMobile('investor')"
+            class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring"
+            aria-controls="m-investor"
+            :aria-expanded="mobile.open==='investor'"
+          >
+            <span>Investor</span>
+            <svg
+              class="w-4 h-4 ml-1 transition-transform"
+              :class="mobile.open==='investor' && 'rotate-180'"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div
+            id="m-investor"
+            x-show="mobile.open==='investor'"
+            x-collapse
+            class="ml-4 flex flex-col gap-1"
+            x-cloak
+          >
+            <a
+              href="#pemegang-saham"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Informasi Pemegang Saham</a
+            >
+            <a
+              href="#kinerja-keuangan"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Kinerja Keuangan</a
+            >
+            <a
+              href="#pusat-investor"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Pusat Investor</a
+            >
+            <a
+              href="#laporan-terbaru"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Laporan & Info Terbaru</a
+            >
+          </div>
+
+          <!-- Media -->
+          <button
+            @click="toggleMobile('media')"
+            class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring"
+            aria-controls="m-media"
+            :aria-expanded="mobile.open==='media'"
+          >
+            <span>Media</span>
+            <svg
+              class="w-4 h-4 ml-1 transition-transform"
+              :class="mobile.open==='media' && 'rotate-180'"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 9l6 6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div
+            id="m-media"
+            x-show="mobile.open==='media'"
+            x-collapse
+            class="ml-4 flex flex-col gap-1"
+            x-cloak
+          >
+            <a
+              href="#press"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Press</a
+            >
+            <a
+              href="#galeri"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Galeri</a
+            >
+            <a
+              href="#downloads"
+              class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5"
+              >Downloads</a
+            >
+          </div>
+
+          <!-- Link langsung -->
+          <a
+            href="#tim"
+            class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring"
+            >Tim Kami</a
+          >
+
+          <!-- CTA + Language -->
+          <a
+            href="#cta"
+            class="mt-2 px-4 py-2 rounded-xl text-center btn-maroon"
+            >Konsultasi</a
+          >
+          <div class="pt-2 flex items-center gap-2">
+            <span class="text-sm text-gray-500">Bahasa:</span>
+            <button
+              id="langBtnSmMenu"
+              class="px-3 py-1.5 rounded-lg border border-black/10 text-sm hover:bg-gray-50"
+            >
+              ID
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== Section: Impact Hero (foto kiri, teks kanan maroon) ===== -->
+    <section id="impact-hero" class="relative isolate">
+      <div class="grid lg:grid-cols-2 min-h-[70vh]">
+        <!-- Left Panel: FOTO -->
+        <div class="relative h-[40vh] lg:h-auto order-1">
+          <img
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop"
+            alt="Hutan dengan cahaya matahari"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <div
+            class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/20 to-transparent"
+          ></div>
+        </div>
+
+        <!-- Right Panel: TEKS (MAROON) -->
+        <div
+          class="slice-right flex items-center px-6 sm:px-10 lg:px-14 py-16 order-2"
+        >
+          <div class="max-w-xl relative z-10">
+            <h1
+              class="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight"
+            >
+              Memberdayakan Hari Ini <br />
+              untuk Mewujudkan Hari Esok
+            </h1>
+            <p
+              class="mt-4 text-white/90 text-base sm:text-lg leading-relaxed text-justify"
+            >
+              Kami memadukan produktivitas, keselamatan, dan praktik hijau untuk
+              menghadirkan nilai berkelanjutan bagi mitra, masyarakat, dan
+              generasi mendatang.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#program-esg"
+                class="px-5 py-3 rounded-xl bg-white text-[--ink] font-semibold hover:brightness-95 transition"
+                >Jelajahi Inisiatif</a
+              >
+              <a
+                href="#laporan"
+                class="px-5 py-3 rounded-xl btn-ghost ring-1 ring-white/20 transition"
+                >Laporan & Target</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Section: Unit Usaha (AAP & ABN) ===== -->
+    <section id="unit-usaha" class="relative bg-white py-16">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="mb-10 text-center">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[--maroon]">
+            Unit Usaha Kami
+          </h2>
+          <p
+            class="mt-3 text-[--ink]/70 text-base md:text-lg max-w-3xl mx-auto text-justify"
+          >
+            Di bawah payung Andalan Group, AAP dan ABN menjalankan operasi yang
+            saling melengkapi— memastikan eksekusi tambang yang disiplin, rantai
+            pasok yang efisien, dan hasil yang terukur bagi para pemangku
+            kepentingan.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- AAP -->
+          <article
+            id="aap"
+            class="p-8 rounded-2xl card-maroon hover:shadow-md transition"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="shrink-0 mt-1 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <!-- ikon target -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="8" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-[--maroon]">
+                  PT Andalan Artha Primanusa (AAP)
+                </h3>
+                <p class="mt-2 text-[--ink]/80 leading-relaxed text-justify">
+                  AAP berfokus sebagai
+                  <span class="font-semibold"
+                    >kontraktor pertambangan nikel & batubara</span
+                  >
+                  dengan layanan end-to-end: perencanaan tambang, pembukaan
+                  lahan, drilling & blasting, loading–hauling, pengelolaan jalan
+                  tambang, hingga pengiriman ke stockpile/port. Operasi
+                  dijalankan dengan disiplin
+                  <span class="font-semibold">KPI, HSE, dan ESG</span> serta
+                  sistem terintegrasi untuk visibilitas kinerja real-time.
+                </p>
+                <ul
+                  class="mt-4 grid sm:grid-cols-2 gap-2 text-[--ink]/80 text-sm"
+                >
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Mine planning & survey
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Drilling, blasting, loading–hauling
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Road maintenance & pit dewatering
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Production control & safety management
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- ABN -->
+          <article
+            id="abn"
+            class="p-8 rounded-2xl card-maroon hover:shadow-md transition"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="shrink-0 mt-1 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <!-- ikon chain/logistics -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M10 13a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1" />
+                  <path d="M14 11a5 5 0 0 1 0 7l-1 1a5 5 0 1 1-7-7l1-1" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-[--maroon]">
+                  PT Andalan Bumi Nusantara (ABN)
+                </h3>
+                <p class="mt-2 text-[--ink]/80 leading-relaxed text-justify">
+                  ABN menangani
+                  <span class="font-semibold"
+                    >logistik pertambangan & manajemen rantai pasok</span
+                  >: hauling dari pit ke stockpile/port, manajemen stockyard,
+                  koordinasi barging & shipping, serta QC & dokumentasi. Fokus
+                  pada <span class="font-semibold">keandalan jadwal</span>,
+                  <span class="font-semibold">efisiensi biaya</span>, dan
+                  <span class="font-semibold">kepatuhan</span> lingkungan-tata
+                  kelola.
+                </p>
+                <ul
+                  class="mt-4 grid sm:grid-cols-2 gap-2 text-[--ink]/80 text-sm"
+                >
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Hauling & fleet management
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Stockpile & quality control
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Barging, transshipment & shipping docs
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span
+                      class="mt-1 w-1.5 h-1.5 rounded-full bullet-gold"
+                    ></span>
+                    Compliance & ESG reporting
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Section: Visi & Misi ===== -->
+    <section id="visi-misi" class="relative bg-white py-20">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[--maroon]">
+            Visi & Misi
+          </h2>
+          <p
+            class="mt-3 text-[--ink]/70 text-base md:text-lg max-w-2xl mx-auto"
+          >
+            Landasan dan arah strategis kami dalam membangun masa depan
+            pertambangan yang berkelanjutan.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-10">
+          <!-- Visi -->
+          <div class="p-8 rounded-2xl card-maroon hover:shadow-md transition">
+            <h3 class="text-xl font-bold text-[--maroon] mb-4">Visi</h3>
+            <p class="text-[--ink]/80 leading-relaxed text-justify">
+              Menjadi kontraktor
+              <span class="font-semibold">pertambangan terkemuka</span> dan
+              <span class="font-semibold">terpercaya</span> di Indonesia dengan
+              kredibilitas dan komitmen dalam memberikan hasil, didukung oleh
+              fondasi operasi pertambangan yang solid, sistem terintegrasi,
+              serta kerja tim yang luar biasa.
+            </p>
+          </div>
+
+          <!-- Misi -->
+          <div class="p-8 rounded-2xl card-maroon hover:shadow-md transition">
+            <h3 class="text-xl font-bold text-[--maroon] mb-4">Misi</h3>
+            <ul
+              class="list-disc pl-5 space-y-3 text-[--ink]/80 leading-relaxed"
+            >
+              <li>
+                Memaksimalkan produktivitas operasional dengan sistem pemantauan
+                yang sangat baik.
+              </li>
+              <li>
+                Melakukan identifikasi yang tepat dengan pemeriksaan data yang
+                teliti sebagai peningkatan dan perkembangan berkelanjutan.
+              </li>
+              <li>
+                Memiliki pola pikir yang kuat dan tangguh untuk memiliki
+                ketahanan mental dan emosional untuk bangkit kembali dari
+                kesulitan, mengatasi tantangan, dan beradaptasi dengan situasi
+                sulit.
+              </li>
+              <li>
+                Memberikan solusi yang saling menguntungkan bagi para pemangku
+                kepentingan.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Section: Core Values — EFFORT ===== -->
+    <section id="core-values" class="relative bg-white py-20">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-4">
+          <p
+            class="uppercase tracking-widest text-sm text-[--maroon] font-semibold"
+          >
+            Core Value
+          </p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-[--ink]">
+            EFFORT
+          </h2>
+          <p class="mt-3 text-[--ink]/70 max-w-3xl mx-auto text-justify">
+            Nilai inti yang menuntun perilaku kerja Andalan Group—mengarahkan
+            kualitas, kecepatan eksekusi, dan ketahanan bisnis di industri
+            pertambangan yang kompetitif.
+          </p>
+        </div>
+
+        <!-- Grid 6 nilai -->
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Excellence -->
+          <article
+            class="group relative rounded-2xl card-maroon hover:shadow-md transition p-6"
+          >
+            <div class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <svg
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2l2.9 6.4 6.9.6-5.2 4.5 1.6 6.7L12 16.9 5.8 20.1l1.6-6.7L2.2 9l6.9-.6L12 2z"
+                  />
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-[--maroon]">Excellence</h3>
+                <p class="mt-1 text-[--ink]/80 leading-relaxed">
+                  Menjamin standar kualitas tinggi di seluruh operasi—dari
+                  keselamatan kerja hingga efisiensi produksi.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Focus -->
+          <article
+            class="group relative rounded-2xl card-maroon hover:shadow-md transition p-6"
+          >
+            <div class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <svg
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="8" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-[--maroon]">Focus</h3>
+                <p class="mt-1 text-[--ink]/80 leading-relaxed">
+                  Memastikan setiap proyek berjalan sesuai target waktu, biaya,
+                  dan keberlanjutan.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Fortitude -->
+          <article
+            class="group relative rounded-2xl card-maroon hover:shadow-md transition p-6"
+          >
+            <div class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <svg
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3z"
+                  />
+                  <path d="M9 12l2 2 4-4" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-[--maroon]">Fortitude</h3>
+                <p class="mt-1 text-[--ink]/80 leading-relaxed">
+                  Keteguhan hati—keberanian dan ketahanan dalam menghadapi
+                  tantangan operasional.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Optimism -->
+          <article
+            class="group relative rounded-2xl card-maroon hover:shadow-md transition p-6"
+          >
+            <div class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <svg
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="4" />
+                  <path
+                    d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"
+                  />
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-[--maroon]">Optimism</h3>
+                <p class="mt-1 text-[--ink]/80 leading-relaxed">
+                  Menjaga semangat positif dalam mencari solusi inovatif dan
+                  beradaptasi dengan perubahan.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Responsive -->
+          <article
+            class="group relative rounded-2xl card-maroon hover:shadow-md transition p-6"
+          >
+            <div class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <svg
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-[--maroon]">Responsive</h3>
+                <p class="mt-1 text-[--ink]/80 leading-relaxed">
+                  Cepat tanggap terhadap risiko di lokasi tambang dan kebutuhan
+                  klien maupun pemangku kepentingan.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tenacity -->
+          <article
+            class="group relative rounded-2xl card-maroon hover:shadow-md transition p-6"
+          >
+            <div class="flex items-start gap-4">
+              <span
+                class="shrink-0 w-12 h-12 rounded-2xl grid place-content-center badge-maroon ring-1 ring-white/10"
+              >
+                <svg
+                  class="w-6 h-6 icon-gold"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M12 2s3 3 3 6a3 3 0 0 1-6 0c0-3 3-6 3-6z" />
+                  <path
+                    d="M7 14a5 5 0 1 0 10 0c0-2.5-2-3.5-3.5-4.5-.9.9-1.7 1.5-2.5 1.5S9.4 10.4 8.5 9.5C7 10.5 7 11.5 7 14z"
+                  />
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-lg font-bold text-[--maroon]">Tenacity</h3>
+                <p class="mt-1 text-[--ink]/80 leading-relaxed">
+                  Gigih mencapai target produksi sekaligus menjaga keberlanjutan
+                  bisnis di industri yang kompetitif.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-10 divider-gold"></div>
+      </div>
+    </section>
+
+    <!-- ===== Section: Manajemen (Maroon & Emas, SVG Icons) ===== -->
+    <section id="manajemen" class="relative bg-white py-20 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="text-center mb-14">
+          <h2
+            class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[--maroon] to-[--gold] bg-clip-text text-transparent"
+          >
+            Manajemen Andalan Group
+          </h2>
+          <p class="mt-4 text-[--ink]/70 max-w-3xl mx-auto text-justify">
+            Kepemimpinan yang berintegritas, visioner, dan berkomitmen
+            memastikan keberlanjutan serta keunggulan operasi Andalan Group.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-10">
+          <!-- Gahari -->
+          <article class="relative rounded-3xl shadow-xl overflow-hidden group">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-[--maroon] via-[--maroon-2] to-[--gold] opacity-95"
+            ></div>
+            <div class="relative p-8 text-white">
+              <div class="flex items-center gap-4">
+                <div
+                  class="shrink-0 w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-[--gold] shadow-lg"
+                >
+                  <img
+                    src="https://i.pravatar.cc/150?img=32"
+                    alt="Gahari Christien"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold flex items-center gap-2">
+                    Gahari Christien
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 icon-gold"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 7H20v13H6.5A2.5 2.5 0 0 0 4 22V4.5z"
+                      />
+                    </svg>
+                  </h3>
+                  <p class="text-sm text-white/80">President</p>
+                </div>
+              </div>
+
+              <blockquote
+                class="mt-5 text-base leading-relaxed text-justify italic text-white/90"
+              >
+                “Operasi tambang hebat bukan sekadar tonase; ini tentang
+                keselamatan, disiplin data, dan praktik hijau yang memberi nilai
+                jangka panjang.”
+              </blockquote>
+
+              <div class="mt-6 flex gap-3 flex-wrap text-sm font-medium">
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 icon-gold"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+                  </svg>
+                  HSE & Produktivitas
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 icon-gold"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M4 19h16M4 15h10M4 11h6M4 7h2" />
+                  </svg>
+                  Data Driven
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Billy -->
+          <article class="relative rounded-3xl shadow-xl overflow-hidden group">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-[--gold] via-[#d9b84a] to-[--maroon] opacity-95"
+            ></div>
+            <div class="relative p-8 text-white">
+              <div class="flex items-center gap-4">
+                <div
+                  class="shrink-0 w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-[--maroon] shadow-lg"
+                >
+                  <img
+                    src="https://i.pravatar.cc/150?img=12"
+                    alt="Billy"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold flex items-center gap-2">
+                    Billy
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M3 17l6-6 4 4 8-8" />
+                    </svg>
+                  </h3>
+                  <p class="text-sm text-white/80">Komisaris</p>
+                </div>
+              </div>
+
+              <blockquote
+                class="mt-5 text-base leading-relaxed text-justify italic text-white/90"
+              >
+                “Tata kelola yang kuat dan kemitraan adil adalah fondasi
+                pertumbuhan. Kami mengukur sukses dari kebermanfaatan bagi
+                stakeholder—bukan hanya angka produksi.”
+              </blockquote>
+
+              <div class="mt-6 flex gap-3 flex-wrap text-sm font-medium">
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 icon-gold"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                  Transparansi
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/10 text-white"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 icon-gold"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 12l4 4 4-4 4 4 4-4" />
+                  </svg>
+                  Partnership
+                </span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer
+      id="kontak"
+      class="relative text-slate-100"
+      style="
+        background-image: linear-gradient(
+          135deg,
+          var(--maroon) 0%,
+          var(--maroon-2) 55%,
+          var(--ink) 100%
+        );
+      "
+    >
+      <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-white/10 pb-6"
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-lg font-semibold">Andalan Group</span>
+          </div>
+          <nav
+            class="flex flex-wrap items-center gap-6 text-sm font-medium"
+            aria-label="Tautan footer"
+          >
+            <a href="#" class="hover:text-[--gold] transition"
+              >Kebijakan Privasi</a
+            >
+            <a href="#" class="hover:text-[--gold] transition"
+              >Syarat & Ketentuan</a
+            >
+            <a href="#tentang" class="hover:text-[--gold] transition"
+              >Tentang Kami</a
+            >
+            <a href="#lokasi" class="hover:text-[--gold] transition">Lokasi</a>
+          </nav>
+        </div>
+
+        <div
+          class="mt-6 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <p class="text-sm text-slate-300">
+            © 2025 Andalan Group. Seluruh hak cipta.
+          </p>
+          <div class="flex gap-4">
+            <a
+              href="#"
+              class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition"
+              aria-label="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M22.225 0H1.771C.792 0 0 .774 0 1.728v20.543C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.728C24 .774 23.2 0 22.225 0zM7.12 20.452H3.56V9h3.56v11.452zM5.34 7.568a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM20.452 20.452h-3.56v-5.58c0-1.33-.026-3.044-1.855-3.044-1.857 0-2.143 1.45-2.143 2.947v5.677h-3.56V9h3.415v1.561h.048c.477-.9 1.642-1.855 3.379-1.855 3.614 0 4.284 2.377 4.284 5.467v6.279z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition"
+              aria-label="Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 1.259.058 2.092.271 2.58.45.648.238 1.11.523 1.596 1.009.486.486.771.948 1.009 1.596.179.488.392 1.321.45 2.58.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.259-.271 2.092-.45 2.58a3.92 3.92 0 0 1-1.009 1.596 3.92 3.92 0 0 1-1.596 1.009c-.488.179-1.321.392-2.58.45-1.266.058-1.646.07-4.85.07s-3.552-.012-4.85-.07c-1.259-.058-2.092-.271-2.58-.45a3.92 3.92 0 0 1-1.009-1.596 3.92 3.92 0 0 1-1.009-1.596c-.179-.488-.392-1.321-.45-2.58C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.058-1.259.271-2.092.45-2.58a3.92 3.92 0 0 1 1.009-1.596A3.92 3.92 0 0 1 5.288 2.683c.488-.179 1.321-.392 2.58-.45C9.134 2.175 9.514 2.163 12 2.163zm0 5.527a5.333 5.333 0 1 1 0 10.666 5.333 5.333 0 0 1 0-10.666zm5.65-2.807a1.244 1.244 0 1 1-2.488 0 1.244 1.244 0 0 1 2.488 0z"
+                />
+              </svg>
+            </a>
+            <a
+              href="#"
+              class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition"
+              aria-label="X"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M18.244 2H21l-6.5 7.43L22 22h-6.406l-5.01-6.546L4.74 22H2l7.035-8.04L2 2h6.5l4.49 5.938L18.244 2Zm-1.117 18h1.844L7.01 4H5.055l12.072 16Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+      // Komponen Alpine untuk navigasi
+      function nav() {
+        return {
+          open: "", // dropdown desktop yang terbuka
+          mobileOpen: false, // menu mobile tertutup default
+          mobile: { open: "" }, // panel mobile yang terbuka
+
+          toggle(key) {
+            this.open = this.open === key ? "" : key;
+          },
+          toggleMobile(key) {
+            this.mobile.open = this.mobile.open === key ? "" : key;
+          },
+          closeAll() {
+            this.open = "";
+            this.mobile.open = "";
+            this.mobileOpen = false;
+          },
+
+          init() {
+            const onResize = () => {
+              if (window.innerWidth < 768) this.open = "";
+            };
+            window.addEventListener("resize", onResize);
+            document.addEventListener("keydown", (e) => {
+              if (e.key === "Escape") {
+                this.closeAll();
+              }
+            });
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

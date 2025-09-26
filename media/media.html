@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Andalan Group — Kontraktor Tambang</title>
+  <meta name="description" content="Andalan Group: mitra strategis dari pit hingga port. Layanan terpadu pertambangan—perencanaan, penambangan, hauling, sampai pengapalan—dengan disiplin K3 dan komitmen ESG.">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    :root{
+      --ink:#0e0e0e;
+      --maroon:#482728;      /* maroon matte */
+      --maroon-2:#2e1718;    /* maroon lebih gelap */
+      --gold:#caa73a;        /* emas kalem */
+    }
+    .focus-ring:focus{outline:2px solid rgba(122,44,47,.35);outline-offset:2px}
+    .menu-panel{box-shadow:0 12px 40px rgba(2,6,23,.18)}
+
+    /* ===== HERO: maroon slice + aksen "aneh tapi elegan" ===== */
+    .slice-right {
+      position: relative;
+      background: radial-gradient(120% 100% at 80% 10%, rgba(202,167,58,.14), transparent 32%),
+                  linear-gradient(180deg, var(--maroon), var(--maroon-2));
+      color: #fff;
+      overflow: hidden;
+    }
+    /* grain halus biar tekstur premium */
+    .slice-right::after{
+      content:"";
+      position:absolute; inset:0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'>\<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter>\<rect width='140' height='140' filter='url(%23n)' opacity='0.035'/>\</svg>");
+      mix-blend-mode: soft-light;
+      pointer-events:none;
+    }
+    /* slice tepi miring */
+    .slice-right::before{
+      content:"";
+      position:absolute; top:0; left:-7vw; height:100%; width:14vw;
+      background:inherit;
+      transform:skewX(18deg);
+      box-shadow:-10px 0 28px rgba(0,0,0,.22);
+      pointer-events:none;
+    }
+    @media (max-width:1024px){ .slice-right::before{display:none} }
+
+    /* sinar lembut berputar */
+    .soft-rays{position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(60% 40% at 70% 30%, rgba(255,255,255,.45), rgba(255,255,255,0) 60%),
+        repeating-conic-gradient(from 0deg, rgba(255,255,255,.18) 0 8deg, rgba(255,255,255,0) 8deg 16deg);
+      mix-blend-mode: screen; opacity:.42; animation:rays-rotate 18s linear infinite; transform-origin:70% 30%;
+    }
+    @keyframes rays-rotate{ to{ transform: rotate(360deg) } }
+
+    /* aksen garis emas miring */
+    .hero-stripe{
+      position:absolute; right:-10%; top:12%;
+      width:46%; height:2px;
+      background:linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: rotate(12deg);
+      opacity:.55; filter: blur(.2px);
+    }
+
+    /* badge slanted */
+    .badge-tilt{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.4rem .7rem; border-radius:999px;
+      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.22);
+      backdrop-filter:saturate(1.1) blur(1.5px);
+      transform: rotate(-3.5deg);
+    }
+
+    /* CTA underline aneh (ornamen) */
+    .btn-weird{ position:relative; overflow:visible; }
+    .btn-weird::after{
+      content:"";
+      position:absolute; left:12px; right:12px; bottom:-6px; height:2px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+      transform:skewX(-20deg);
+      opacity:.8;
+    }
+
+    /* foto kiri: efek “hidup” saat hover (desktop) */
+    .hero-photo:hover img{ transform:scale(1.035) rotate(-.4deg) }
+    .hero-photo img{ transition: transform .8s cubic-bezier(.2,.6,0,1) }
+
+    /* tipografi hero */
+    .hero-title{ letter-spacing:-.02em; text-wrap:balance; }
+    .hero-sub{ color: rgba(255,255,255,.82); }
+
+    /* Anchor offset agar tak tertutup navbar sticky */
+    [id] { scroll-margin-top: 84px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-[15px] text-[--ink]">
+
+  <!-- ================= NAVBAR (TIDAK DIUBAH) ================= -->
+  <header
+    class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-black/5 supports-[backdrop-filter]:bg-white/70"
+    x-data="nav()"
+    @keydown.escape="closeAll()"
+  >
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center gap-3 group focus-ring" aria-label="Andalan Group" @click="closeAll()">
+          <span class="font-extrabold tracking-tight text-lg md:text-xl">
+            <span class="bg-gradient-to-r from-[--ink] to-[--maroon] bg-clip-text text-transparent">Andalan</span>
+            <span class="text-[--maroon] group-hover:text-[--gold] transition">Group</span>
+          </span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium" aria-label="Navigasi utama" @click.outside="open=''">
+          <!-- Tentang -->
+          <div class="relative" :aria-expanded="open==='about'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('about')" :aria-expanded="open==='about'">
+              <span>Tentang Kami</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='about' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='about'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="../index.html#visi-misi" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
+              <a href="../index.html#core-values" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Core Values</a>
+              <a href="../index.html#manajemen" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Manajemen</a>
+              <a href="../index.html#struktur" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Struktur Perseroan</a>
+              <a href="../index.html#sejarah" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tonggak Sejarah</a>
+            </div>
+          </div>
+
+          <!-- Bisnis Kami -->
+          <div class="relative" :aria-expanded="open==='business'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('business')" :aria-expanded="open==='business'">
+              <span>Bisnis Kami</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='business' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='business'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#aap" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Artha Primanusa (AAP)</a>
+              <a href="#abn" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Bumi Nusantara (ABN)</a>
+            </div>
+          </div>
+
+          <!-- ESG -->
+          <div class="relative" :aria-expanded="open==='esg'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('esg')" :aria-expanded="open==='esg'">
+              <span>ESG</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='esg' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='esg'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#kerangka" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kerangka Keberlanjutan</a>
+              <a href="#lingkungan" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Lingkungan</a>
+              <a href="#sosial" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Sosial</a>
+              <a href="#tata-kelola" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tata Kelola</a>
+              <a href="#k3" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kesehatan & Keselamatan</a>
+            </div>
+          </div>
+
+          <!-- Investor -->
+          <div class="relative" :aria-expanded="open==='investor'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('investor')" :aria-expanded="open==='investor'">
+              <span>Investor</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='investor'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-80 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#pemegang-saham" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Informasi Pemegang Saham</a>
+              <a href="#kinerja-keuangan" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kinerja Keuangan</a>
+              <a href="#pusat-investor" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Pusat Investor</a>
+              <a href="#laporan-terbaru" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Laporan & Info Terbaru</a>
+            </div>
+          </div>
+
+          <!-- Media -->
+          <div class="relative" :aria-expanded="open==='media'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('media')" :aria-expanded="open==='media'">
+              <span>Media</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='media' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='media'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#press" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Press</a>
+              <a href="#galeri" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Galeri</a>
+              <a href="#downloads" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Downloads</a>
+            </div>
+          </div>
+
+          <!-- Tim Kami -->
+          <a href="#tim" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring" @click="closeAll()">Tim Kami</a>
+
+          <!-- CTA -->
+          <a href="#cta" class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[--maroon] text-white font-semibold shadow-[0_0_8px_rgba(212,175,55,0.25)] hover:scale-105 active:scale-95 transition focus-ring" @click="closeAll()">
+            Konsultasi
+          </a>
+
+          <!-- Lang -->
+          <button id="langBtn" class="ml-2 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-black/10 text-[13px] text-gray-700 hover:bg-gray-50 focus-ring" aria-label="Ganti Bahasa">
+            <span id="langLabel">ID</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </nav>
+
+        <!-- Mobile buttons -->
+        <div class="md:hidden flex items-center gap-2">
+          <button id="langBtnSm" class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 text-xs border border-black/10 focus-ring" aria-label="Ganti Bahasa (mobile)">ID</button>
+          <button class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 focus-ring" aria-label="Buka Menu"
+                  :aria-expanded="mobileOpen" @click="mobileOpen=!mobileOpen">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5" x-show="mobileOpen" x-transition.origin.top x-cloak>
+      <nav class="flex flex-col px-6 py-4 gap-2 text-base font-medium" aria-label="Navigasi mobile">
+        <!-- Tentang -->
+        <button @click="toggleMobile('about')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-about" :aria-expanded="mobile.open==='about'">
+          <span>Tentang Kami</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='about' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-about" x-show="mobile.open==='about'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#visi-misi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Visi & Misi</a>
+          <a href="#core-values" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Core Values</a>
+          <a href="#manajemen" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Manajemen</a>
+          <a href="#struktur" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Struktur Perseroan</a>
+          <a href="#sejarah" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Tonggak Sejarah</a>
+        </div>
+
+        <!-- Bisnis -->
+        <button @click="toggleMobile('business')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-business" :aria-expanded="mobile.open==='business'">
+          <span>Bisnis Kami</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='business' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-business" x-show="mobile.open==='business'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#aap" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Andalan Artha Primanusa (AAP)</a>
+          <a href="#abn" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Andalan Bumi Nusantara (ABN)</a>
+        </div>
+
+        <!-- ESG -->
+        <button @click="toggleMobile('esg')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-esg" :aria-expanded="mobile.open==='esg'">
+          <span>ESG</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='esg' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-esg" x-show="mobile.open==='esg'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#kerangka" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Kerangka Keberlanjutan</a>
+          <a href="#lingkungan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Aspek Lingkungan</a>
+          <a href="#sosial" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Aspek Sosial</a>
+          <a href="#tata-kelola" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Tata Kelola</a>
+          <a href="#k3" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Kesehatan & Keselamatan</a>
+        </div>
+
+        <!-- Investor -->
+        <button @click="toggleMobile('investor')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-investor" :aria-expanded="mobile.open==='investor'">
+          <span>Investor</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-investor" x-show="mobile.open==='investor'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#pemegang-saham" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Informasi Pemegang Saham</a>
+          <a href="#kinerja-keuangan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Kinerja Keuangan</a>
+          <a href="#pusat-investor" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Pusat Investor</a>
+          <a href="#laporan-terbaru" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Laporan & Info Terbaru</a>
+        </div>
+
+        <!-- Link langsung -->
+        <a href="#tim" class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" @click="closeAll()">Tim Kami</a>
+
+        <!-- CTA + Language -->
+        <a href="#cta" class="mt-2 px-4 py-2 rounded-xl text-center bg-[--maroon] text-white shadow-[0_0_8px_rgba(212,175,55,0.25)]" @click="closeAll()">Konsultasi</a>
+        <div class="pt-2 flex items-center gap-2">
+          <span class="text-sm text-gray-500">Bahasa:</span>
+          <button id="langBtnSmMenu" class="px-3 py-1.5 rounded-lg border border-black/10 text-sm hover:bg-gray-50">ID</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Anchor Home (untuk logo) ===== -->
+  <div id="home"></div>
+
+  <!-- ===== Section: Impact Hero (foto kiri, teks kanan maroon) — SUDAH DIUBAH ===== -->
+<section id="media-hero" class="relative isolate overflow-hidden">
+  <div class="grid lg:grid-cols-2 min-h-[75vh]">
+    
+    <!-- Left Panel: FOTO -->
+    <div class="relative h-[42vh] lg:h-auto order-1">
+      <img src="https://images.unsplash.com/photo-1522206024047-9c925421675b?q=80&w=2000&auto=format&fit=crop"
+           alt="Kolaborasi media digital"
+           class="absolute inset-0 w-full h-full object-cover rounded-br-[80px] lg:rounded-br-[120px]" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+    </div>
+
+    <!-- Right Panel: TEKS -->
+    <div class="relative flex items-center px-6 sm:px-10 lg:px-14 py-16 order-2 bg-gradient-to-br from-[--maroon] to-[--maroon-2] text-white">
+      
+      <!-- Aksen lingkaran -->
+      <div class="absolute right-0 top-0 w-72 h-72 bg-[--gold]/20 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+      <div class="absolute left-0 bottom-0 w-60 h-60 bg-[--gold]/10 rounded-full blur-2xl -translate-x-1/3 translate-y-1/3"></div>
+
+      <div class="max-w-xl relative z-10">
+        
+        <!-- Badge -->
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide 
+                     bg-gradient-to-r from-[--gold] to-yellow-500 text-[--maroon] shadow-lg shadow-black/20">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 6h8m-8 6h8m-8 6h8"/>
+          </svg>
+          Media • Informasi • Kolaborasi
+        </span>
+
+        <!-- Judul -->
+        <h1 class="mt-6 text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+          <span class="bg-gradient-to-r from-yellow-400 to-[--gold] bg-clip-text text-transparent">
+            Menyebarkan Informasi,
+          </span> 
+          <br class="hidden sm:block"/>
+          <span class="whitespace-nowrap">Menghubungkan Generasi</span>
+        </h1>
+
+        <!-- Deskripsi -->
+        <p class="mt-5 text-base sm:text-lg leading-relaxed text-white/90">
+          Menjadi pusat media yang <span class="font-semibold text-[--gold]">aktual</span>, 
+          <span class="font-semibold text-[--gold]">kreatif</span>, dan 
+          <span class="font-semibold text-[--gold]">relevan</span>.  
+          Kami hadir dengan konten inspiratif, transparan, dan terhubung dengan kebutuhan zaman.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#berita" 
+             class="px-6 py-3 rounded-xl font-semibold text-[--maroon] bg-gradient-to-r from-yellow-400 to-[--gold] 
+                    shadow-lg shadow-black/20 hover:scale-105 transition transform">
+            📺 Berita Terbaru
+          </a>
+          <a href="#publikasi" 
+             class="px-6 py-3 rounded-xl font-semibold text-white ring-2 ring-white/30 hover:bg-white/10 transition">
+            📖 Publikasi & Artikel
+          </a>
+        </div>
+
+        <!-- tagline kecil -->
+        <div class="mt-6 text-sm text-white/70 italic">
+          “Aktual. Relevan. Terpercaya. Terhubung.”
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- ===== MEDIA HUB ===== -->
+ <!-- ================== MEDIA & PUBLIKASI (LIGHT) ================== -->
+<section id="media"
+  class="relative bg-white text-gray-800"
+  style="--gold: var(--gold, #caa73a);">
+
+  <div class="max-w-7xl mx-auto px-4 md:px-6 py-16 lg:py-20 relative">
+    <!-- Headline -->
+    <div class="max-w-3xl">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 bg-gray-50 text-[12px] tracking-wider">
+        <svg width="14" height="14" viewBox="0 0 24 24" class="text-gray-500" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3l2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3z"/>
+        </svg>
+        Press • Galeri • Downloads
+      </span>
+      <h2 class="mt-4 text-3xl md:text-4xl font-extrabold text-gray-900">Media & Publikasi</h2>
+      <p class="mt-3 text-gray-600 max-w-xl">
+        Jelajahi siaran pers terbaru, dokumentasi visual kegiatan, hingga unduhan resmi dari Andalan Group.
+      </p>
+    </div>
+
+    <!-- ===== Kartu pintasan ===== -->
+    <div class="mt-12 grid md:grid-cols-3 gap-8">
+      <!-- Press -->
+      <div class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-lg text-gray-900">Press</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" style="color:var(--gold)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <p class="mt-3 text-gray-600 text-sm">
+          Temukan rilis media, berita terbaru, dan liputan resmi mengenai aktivitas perusahaan.
+        </p>
+        <a href="#press" class="inline-block mt-4 font-medium hover:underline" style="color:var(--gold)">Lihat Press</a>
+      </div>
+
+      <!-- Galeri -->
+      <div class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-lg text-gray-900">Galeri</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" style="color:var(--gold)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/>
+          </svg>
+        </div>
+        <p class="mt-3 text-gray-600 text-sm">
+          Koleksi foto & video kegiatan operasional, CSR, serta dokumentasi bersejarah Andalan Group.
+        </p>
+        <a href="#galeri" class="inline-block mt-4 font-medium hover:underline" style="color:var(--gold)">Jelajahi Galeri</a>
+      </div>
+
+      <!-- Downloads -->
+      <div class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-lg text-gray-900">Downloads</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" style="color:var(--gold)" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4m-6 8h8"/>
+          </svg>
+        </div>
+        <p class="mt-3 text-gray-600 text-sm">
+          Unduh laporan tahunan, brosur perusahaan, profil bisnis, dan materi resmi lainnya.
+        </p>
+        <a href="#downloads" class="inline-block mt-4 font-medium hover:underline" style="color:var(--gold)">Unduh Dokumen</a>
+      </div>
+    </div>
+
+    <!-- ===== Detail: Press ===== -->
+    <section id="press" class="mt-16">
+      <div class="flex items-end justify-between gap-4">
+        <h3 class="text-2xl font-bold text-gray-900">Siaran Pers</h3>
+        <a href="#" class="text-sm hover:underline" style="color:var(--gold)">Arsip Lengkap</a>
+      </div>
+
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <!-- Item Press -->
+        <article class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center gap-3 text-xs text-gray-500">
+            <span class="px-2 py-1 rounded-full bg-gray-100 border border-gray-200">Rilis</span>
+            <time datetime="2025-08-30">30 Agustus 2025</time>
+          </div>
+          <h4 class="mt-3 text-lg font-semibold text-gray-900">
+            Andalan Group Perluas Layanan Hauling Ramah Lingkungan
+          </h4>
+          <p class="mt-2 text-gray-600">
+            Inisiatif efisiensi bahan bakar dan pengurangan emisi melalui optimasi rute & peremajaan armada.
+          </p>
+          <div class="mt-3 flex items-center gap-4">
+            <a href="#" class="text-sm hover:underline" style="color:var(--gold)">Baca Selengkapnya</a>
+            <a href="#" class="text-gray-600 text-sm hover:underline">PDF</a>
+          </div>
+        </article>
+
+        <article class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center gap-3 text-xs text-gray-500">
+            <span class="px-2 py-1 rounded-full bg-gray-100 border border-gray-200">Berita</span>
+            <time datetime="2025-07-12">12 Juli 2025</time>
+          </div>
+          <h4 class="mt-3 text-lg font-semibold text-gray-900">
+            Program CSR: Rehabilitasi Daerah Aliran Sungai
+          </h4>
+          <p class="mt-2 text-gray-600">
+            Kolaborasi dengan pemda & komunitas lokal untuk menanam 50.000 bibit di sekitar area operasional.
+          </p>
+          <div class="mt-3 flex items-center gap-4">
+            <a href="#" class="text-sm hover:underline" style="color:var(--gold)">Baca Selengkapnya</a>
+            <a href="#" class="text-gray-600 text-sm hover:underline">Foto</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Detail: Galeri ===== -->
+    <section id="galeri" class="mt-16">
+      <div class="flex items-end justify-between gap-4">
+        <h3 class="text-2xl font-bold text-gray-900">Galeri</h3>
+        <a href="#" class="text-sm hover:underline" style="color:var(--gold)">Lihat Semua</a>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 6 foto dummy -->
+        <figure class="relative group overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <img class="w-full h-52 object-cover transition duration-500 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop"
+               alt="Operasi alat berat" />
+          <figcaption class="absolute bottom-0 inset-x-0 p-3 text-sm bg-gradient-to-t from-black/50 to-transparent text-white">
+            Operasi Alat Berat
+          </figcaption>
+        </figure>
+
+        <figure class="relative group overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <img class="w-full h-52 object-cover transition duration-500 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop"
+               alt="Pengangkutan batu bara" />
+          <figcaption class="absolute bottom-0 inset-x-0 p-3 text-sm bg-gradient-to-t from-black/50 to-transparent text-white">
+            Hauling
+          </figcaption>
+        </figure>
+
+        <figure class="relative group overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <img class="w-full h-52 object-cover transition duration-500 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop"
+               alt="Monitoring pusat operasi" />
+          <figcaption class="absolute bottom-0 inset-x-0 p-3 text-sm bg-gradient-to-t from-black/50 to-transparent text-white">
+            Command Center
+          </figcaption>
+        </figure>
+
+        <figure class="relative group overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <img class="w-full h-52 object-cover transition duration-500 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200&auto=format&fit=crop"
+               alt="Reklamasi dan penghijauan" />
+          <figcaption class="absolute bottom-0 inset-x-0 p-3 text-sm bg-gradient-to-t from-black/50 to-transparent text-white">
+            Reklamasi
+          </figcaption>
+        </figure>
+
+        <figure class="relative group overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <img class="w-full h-52 object-cover transition duration-500 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop"
+               alt="Pelatihan K3" />
+          <figcaption class="absolute bottom-0 inset-x-0 p-3 text-sm bg-gradient-to-t from-black/50 to-transparent text-white">
+            Pelatihan K3
+          </figcaption>
+        </figure>
+
+        <figure class="relative group overflow-hidden rounded-xl border border-gray-200 bg-white">
+          <img class="w-full h-52 object-cover transition duration-500 group-hover:scale-105"
+               src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&auto=format&fit=crop"
+               alt="Rapat koordinasi" />
+          <figcaption class="absolute bottom-0 inset-x-0 p-3 text-sm bg-gradient-to-t from-black/50 to-transparent text-white">
+            Rapat Koordinasi
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== Detail: Downloads ===== -->
+    <section id="downloads" class="mt-16">
+      <div class="flex items-end justify-between gap-4">
+        <h3 class="text-2xl font-bold text-gray-900">Downloads</h3>
+        <a href="#" class="text-sm hover:underline" style="color:var(--gold)">Semua File</a>
+      </div>
+
+      <div class="mt-6 overflow-hidden rounded-xl border border-gray-200 bg-white">
+        <table class="min-w-full text-sm">
+          <thead class="bg-gray-50 text-gray-700">
+            <tr>
+              <th class="text-left font-semibold px-4 py-3">Nama Dokumen</th>
+              <th class="text-left font-semibold px-4 py-3 hidden sm:table-cell">Jenis</th>
+              <th class="text-left font-semibold px-4 py-3 hidden md:table-cell">Diterbitkan</th>
+              <th class="text-left font-semibold px-4 py-3">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-900">Profil Perusahaan 2025</td>
+              <td class="px-4 py-3 text-gray-600 hidden sm:table-cell">PDF</td>
+              <td class="px-4 py-3 text-gray-600 hidden md:table-cell">10 Jan 2025</td>
+              <td class="px-4 py-3">
+                <a href="#"
+                   class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-white text-xs border border-transparent hover:opacity-95"
+                   style="background:var(--gold)">
+                  Unduh
+                </a>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-900">Laporan Keberlanjutan 2024</td>
+              <td class="px-4 py-3 text-gray-600 hidden sm:table-cell">PDF</td>
+              <td class="px-4 py-3 text-gray-600 hidden md:table-cell">20 Des 2024</td>
+              <td class="px-4 py-3">
+                <a href="#"
+                   class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-white text-xs border border-transparent hover:opacity-95"
+                   style="background:var(--gold)">
+                  Unduh
+                </a>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-4 py-3 text-gray-900">Brosur Layanan — AAP</td>
+              <td class="px-4 py-3 text-gray-600 hidden sm:table-cell">PDF</td>
+              <td class="px-4 py-3 text-gray-600 hidden md:table-cell">01 Sep 2025</td>
+              <td class="px-4 py-3">
+                <a href="#"
+                   class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-white text-xs border border-transparent hover:opacity-95"
+                   style="background:var(--gold)">
+                  Unduh
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</section>
+<!-- ================== /MEDIA & PUBLIKASI ================== -->
+
+  <!-- ================= FOOTER (TIDAK DIUBAH) ================= -->
+  <footer id="kontak" class="relative bg-gradient-to-tr from-[--maroon] via-[#5a1f22] to-[#0e0e0e] text-slate-100">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-white/10 pb-6">
+        <div class="flex items-center gap-3">
+          <span class="text-lg font-semibold">Andalan Group</span>
+        </div>
+        <nav class="flex flex-wrap items-center gap-6 text-sm font-medium" aria-label="Tautan footer">
+          <a href="#" class="hover:text-[--gold] transition">Kebijakan Privasi</a>
+          <a href="#" class="hover:text-[--gold] transition">Syarat & Ketentuan</a>
+          <a href="#aap" class="hover:text-[--gold] transition">AAP</a>
+          <a href="#abn" class="hover:text-[--gold] transition">ABN</a>
+        </nav>
+      </div>
+
+      <div class="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-slate-300">© 2025 Andalan Group. Seluruh hak cipta.</p>
+        <div class="flex gap-4">
+          <a href="#" class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22.225 0H1.771C.792 0 0 .774 0 1.728v20.543C0 23.225.792 24 1.771 24h20.451C23.2 24 24 23.225 24 22.271V1.728C24 .774 23.2 0 22.225 0zM7.12 20.452H3.56V9h3.56v11.452zM5.34 7.568a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM20.452 20.452h-3.56v-5.58c0-1.33-.026-3.044-1.855-3.044-1.857 0-2.143 1.45-2.143 2.947v5.677h-3.56V9h3.415v1.561h.048c.477-.9 1.642-1.855 3.379-1.855 3.614 0 4.284 2.377 4.284 5.467v6.279z"/></svg>
+          </a>
+          <a href="#" class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.259.058 2.092.271 2.58.45.648.238 1.11.523 1.596 1.009.486.486.771.948 1.009 1.596.179.488.392 1.321.45 2.58.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.259-.271 2.092-.45 2.58a3.92 3.92 0 0 1-1.009 1.596 3.92 3.92 0 0 1-1.596 1.009c-.488.179-1.321.392-2.58.45-1.266.058-1.646.07-4.85.07s-3.552-.012-4.85-.07c-1.259-.058-2.092-.271-2.58-.45a3.92 3.92 0 0 1-1.009-1.596 3.92 3.92 0 0 1-1.009-1.596c-.179-.488-.392-1.321-.45-2.58C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.058-1.259.271-2.092.45-2.58a3.92 3.92 0 0 1 1.009-1.596A3.92 3.92 0 0 1 5.288 2.683c.488-.179 1.321-.392 2.58-.45C9.134 2.175 9.514 2.163 12 2.163zm0 5.527a5.333 5.333 0 1 1 0 10.666 5.333 5.333 0 0 1 0-10.666zm5.65-2.807a1.244 1.244 0 1 1-2.488 0 1.244 1.244 0 0 1 2.488 0z"/></svg>
+          </a>
+          <a href="#" class="p-2 rounded-lg bg-white/5 hover:bg-[--gold] hover:text-[--ink] transition" aria-label="X">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2H21l-6.5 7.43L22 22h-6.406l-5.01-6.546L4.74 22H2l7.035-8.04L2 2h6.5l4.49 5.938L18.244 2Zm-1.117 18h1.844L7.01 4H5.055l12.072 16Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    // Komponen Alpine untuk navigasi (ASLI — tidak diubah)
+    function nav(){
+      return {
+        open: '',              // dropdown desktop yang terbuka
+        mobileOpen: false,     // menu mobile tertutup default
+        mobile: { open: '' },  // panel mobile yang terbuka
+
+        toggle(key){ this.open = (this.open === key ? '' : key) },
+        toggleMobile(key){ this.mobile.open = (this.mobile.open === key ? '' : key) },
+        closeAll(){ this.open=''; this.mobile.open=''; this.mobileOpen=false },
+
+        init(){
+          const onResize=()=>{ if (window.innerWidth < 768) this.open=''; };
+          window.addEventListener('resize', onResize);
+          document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ this.closeAll(); }});
+        }
+      }
+    }
+  </script>
+</body>
+</html>

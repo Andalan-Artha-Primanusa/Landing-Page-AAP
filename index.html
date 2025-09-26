@@ -105,264 +105,210 @@
   </head>
 
   <body class="bg-gray-50 text-[15px] text-[--ink]">
-   <!-- ================== NAVBAR ================== -->
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/5"
-        x-data="nav()" @keydown.escape="closeAll()">
-  <div class="max-w-7xl mx-auto px-4 md:px-6">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <a href="#home" class="flex items-center gap-3 group focus-ring" aria-label="Andalan Group">
-        <span class="font-extrabold tracking-tight text-lg md:text-xl">
-          <span class="bg-gradient-to-r from-[--ink] to-[--maroon] bg-clip-text text-transparent">Andalan</span>
-          <span class="text-[--maroon] group-hover:text-[--gold] transition">Group</span>
-        </span>
-      </a>
+    <!-- ================== NAVBAR ================== -->
+    <header
+    class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-black/5 supports-[backdrop-filter]:bg-white/70"
+    x-data="nav()"
+    @keydown.escape="closeAll()"
+  >
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <a href="../index.html" class="flex items-center gap-3 group focus-ring" aria-label="Andalan Group">
+          <span class="font-extrabold tracking-tight text-lg md:text-xl">
+            <span class="bg-gradient-to-r from-[--ink] to-[--maroon] bg-clip-text text-transparent">Andalan</span>
+            <span class="text-[--maroon] group-hover:text-[--gold] transition">Group</span>
+          </span>
+        </a>
 
-      <!-- Desktop Nav (klik = buka/tutup) -->
-      <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium"
-           aria-label="Primary"
-           @click.outside="open=''">
-        <!-- Tentang -->
-        <div class="relative" :aria-expanded="open==='about'">
-          <button type="button"
-                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
-                  @click="toggle('about')"
-                  :aria-expanded="open==='about'">
-            <span data-i18n="nav_about">Tentang</span>
-            <span class="nav-caret ml-1 transition-transform duration-200"
-                  :class="open==='about' ? 'rotate-180' : ''">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </button>
-          <div x-cloak x-show="open==='about'" x-transition.origin.top.left
-               @click.stop
-               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-            <a href="#tentang-kami" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tentang Kami</a>
-            <a href="#sejarah" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Sejarah</a>
-            <a href="#visi-misi" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-medium" aria-label="Navigasi utama" @click.outside="open=''">
+          <!-- Tentang -->
+          <div class="relative" :aria-expanded="open==='about'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('about')" :aria-expanded="open==='about'">
+              <span>Tentang Kami</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='about' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='about'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="./tentang_kami/visimis.html#visi-misi" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
+              <a href="./tentang_kami/visimis.html#core-values" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Core Values</a>
+              <a href="./tentang_kami/visimis.html#manajemen" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Manajemen</a>
+              <a href="./tentang_kami/visimis.html#struktur" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Struktur Perseroan</a>
+              <a href="./tentang_kami/visimis.html#sejarah" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tonggak Sejarah</a>
+            </div>
           </div>
+
+          <!-- Bisnis Kami -->
+          <div class="relative" :aria-expanded="open==='business'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('business')" :aria-expanded="open==='business'">
+              <span>Bisnis Kami</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='business' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='business'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#aap" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Artha Primanusa (AAP)</a>
+              <a href="#abn" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Bumi Nusantara (ABN)</a>
+            </div>
+          </div>
+
+          <!-- ESG -->
+          <div class="relative" :aria-expanded="open==='esg'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('esg')" :aria-expanded="open==='esg'">
+              <span>ESG</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='esg' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='esg'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#kerangka" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kerangka Keberlanjutan</a>
+              <a href="#lingkungan" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Lingkungan</a>
+              <a href="#sosial" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Sosial</a>
+              <a href="#tata-kelola" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tata Kelola</a>
+              <a href="#k3" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kesehatan & Keselamatan</a>
+            </div>
+          </div>
+
+          <!-- Investor -->
+          <div class="relative" :aria-expanded="open==='investor'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('investor')" :aria-expanded="open==='investor'">
+              <span>Investor</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='investor'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-80 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#pemegang-saham" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Informasi Pemegang Saham</a>
+              <a href="#kinerja-keuangan" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kinerja Keuangan</a>
+              <a href="#pusat-investor" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Pusat Investor</a>
+              <a href="#laporan-terbaru" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Laporan & Info Terbaru</a>
+            </div>
+          </div>
+
+          <!-- Media -->
+          <div class="relative" :aria-expanded="open==='media'">
+            <button type="button" aria-haspopup="menu"
+              class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
+              @click="toggle('media')" :aria-expanded="open==='media'">
+              <span>Media</span>
+              <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='media' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div x-cloak x-show="open==='media'" x-transition.origin.top.left @click.stop role="menu"
+                 class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
+              <a href="#press" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Press</a>
+              <a href="#galeri" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Galeri</a>
+              <a href="#downloads" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Downloads</a>
+            </div>
+          </div>
+
+          <!-- Tim Kami -->
+          <a href="#tim" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring">Tim Kami</a>
+
+          <!-- CTA -->
+          <a href="#cta" class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-maroon font-semibold transition focus-ring">
+            Konsultasi
+          </a>
+
+          <!-- Lang -->
+          <button id="langBtn" class="ml-2 inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-black/10 text-[13px] text-gray-700 hover:bg-gray-50 focus-ring" aria-label="Ganti Bahasa">
+            <span id="langLabel">ID</span>
+            <svg class="w-4 h-4" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </nav>
+
+        <!-- Mobile buttons -->
+        <div class="md:hidden flex items-center gap-2">
+          <button id="langBtnSm" class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 text-xs border border-black/10 focus-ring" aria-label="Ganti Bahasa (mobile)">ID</button>
+          <button class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 focus-ring" aria-label="Buka Menu"
+                  :aria-expanded="mobileOpen" @click="mobileOpen=!mobileOpen">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5" x-show="mobileOpen" x-transition.origin.top x-cloak>
+      <nav class="flex flex-col px-6 py-4 gap-2 text-base font-medium" aria-label="Navigasi mobile">
+        <!-- Tentang -->
+        <button @click="toggleMobile('about')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-about" :aria-expanded="mobile.open==='about'">
+          <span>Tentang Kami</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='about' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-about" x-show="mobile.open==='about'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#visi-misi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Visi & Misi</a>
+          <a href="#strategi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Core Values</a>
+          <a href="#manajemen" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Manajemen</a>
+          <a href="#struktur" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Struktur Perseroan</a>
+          <a href="#sejarah" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Tonggak Sejarah</a>
         </div>
 
-        <!-- Bisnis Kami -->
-        <div class="relative" :aria-expanded="open==='business'">
-          <button type="button"
-                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
-                  @click="toggle('business')"
-                  :aria-expanded="open==='business'">
-            <span>Bisnis Kami</span>
-            <span class="nav-caret ml-1 transition-transform duration-200"
-                  :class="open==='business' ? 'rotate-180' : ''">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </button>
-          <div x-cloak x-show="open==='business'" x-transition.origin.top.left
-               @click.stop
-               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-            <a href="#mine-planning" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Mine Planning</a>
-            <a href="#operation" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Mining Operation</a>
-            <a href="#logistics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Logistics</a>
-            <a href="#support" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Support Services</a>
-          </div>
+        <!-- Bisnis -->
+        <button @click="toggleMobile('business')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-business" :aria-expanded="mobile.open==='business'">
+          <span>Bisnis Kami</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='business' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-business" x-show="mobile.open==='business'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#aap" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Andalan Artha Primanusa (AAP)</a>
+          <a href="#abn" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Andalan Bumi Nusantara (ABN)</a>
         </div>
 
         <!-- ESG -->
-        <div class="relative" :aria-expanded="open==='esg'">
-          <button type="button"
-                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
-                  @click="toggle('esg')"
-                  :aria-expanded="open==='esg'">
-            <span>ESG</span>
-            <span class="nav-caret ml-1 transition-transform duration-200"
-                  :class="open==='esg' ? 'rotate-180' : ''">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </button>
-          <div x-cloak x-show="open==='esg'" x-transition.origin.top.left
-               @click.stop
-               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-            <a href="#environment" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Environment</a>
-            <a href="#social" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Social</a>
-            <a href="#governance" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Governance</a>
-          </div>
+        <button @click="toggleMobile('esg')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-esg" :aria-expanded="mobile.open==='esg'">
+          <span>ESG</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='esg' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-esg" x-show="mobile.open==='esg'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#kerangka" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Kerangka Keberlanjutan</a>
+          <a href="#lingkungan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Aspek Lingkungan</a>
+          <a href="#sosial" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Aspek Sosial</a>
+          <a href="#tata-kelola" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Tata Kelola</a>
+          <a href="#k3" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Kesehatan & Keselamatan</a>
         </div>
 
         <!-- Investor -->
-        <div class="relative" :aria-expanded="open==='investor'">
-          <button type="button"
-                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
-                  @click="toggle('investor')"
-                  :aria-expanded="open==='investor'">
-            <span>Investor</span>
-            <span class="nav-caret ml-1 transition-transform duration-200"
-                  :class="open==='investor' ? 'rotate-180' : ''">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </button>
-          <div x-cloak x-show="open==='investor'" x-transition.origin.top.left
-               @click.stop
-               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-            <a href="#overview" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Overview</a>
-            <a href="#reports" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Reports</a>
-            <a href="#news" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Newsroom</a>
-          </div>
+        <button @click="toggleMobile('investor')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-investor" :aria-expanded="mobile.open==='investor'">
+          <span>Investor</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-investor" x-show="mobile.open==='investor'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#pemegang-saham" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Informasi Pemegang Saham</a>
+          <a href="#kinerja-keuangan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Kinerja Keuangan</a>
+          <a href="#pusat-investor" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Pusat Investor</a>
+          <a href="#laporan-terbaru" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Laporan & Info Terbaru</a>
         </div>
 
         <!-- Media -->
-        <div class="relative" :aria-expanded="open==='media'">
-          <button type="button"
-                  class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
-                  @click="toggle('media')"
-                  :aria-expanded="open==='media'">
-            <span>Media</span>
-            <span class="nav-caret ml-1 transition-transform duration-200"
-                  :class="open==='media' ? 'rotate-180' : ''">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </button>
-          <div x-cloak x-show="open==='media'" x-transition.origin.top.left
-               @click.stop
-               class="absolute left-0 top-[calc(100%+8px)] w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-            <a href="#press" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Press</a>
-            <a href="#gallery" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Gallery</a>
-            <a href="#downloads" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Downloads</a>
-          </div>
+        <button @click="toggleMobile('media')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-media" :aria-expanded="mobile.open==='media'">
+          <span>Media</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='media' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-media" x-show="mobile.open==='media'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#press" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Press</a>
+          <a href="#galeri" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Galeri</a>
+          <a href="#downloads" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Downloads</a>
         </div>
 
-        <!-- Tim Kami (tanpa dropdown) -->
-        <a href="#tim" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring">
-          Tim Kami
-        </a>
+        <!-- Link langsung -->
+        <a href="#tim" class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">Tim Kami</a>
 
-        <!-- CTA -->
-        <a href="#cta" data-i18n="cta_consult"
-           class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[--maroon] text-white font-semibold shadow-[0_0_8px_rgba(212,175,55,0.25)] hover:scale-105 active:scale-95 transition focus-ring">
-          Konsultasi
-        </a>
-
-        <!-- Language -->
-        <div class="ml-2">
-          <button id="langBtn" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-black/10 text-[13px] text-gray-700 hover:bg-gray-50 focus-ring"
-                  aria-label="Switch Language" title="Switch Language">
-            <span id="langLabel">ID</span>
-            <span class="nav-caret">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4">
-                <path d="M6 9l6 6 6-6"></path>
-              </svg>
-            </span>
-          </button>
+        <!-- CTA + Language -->
+        <a href="#cta" class="mt-2 px-4 py-2 rounded-xl text-center btn-maroon">Konsultasi</a>
+        <div class="pt-2 flex items-center gap-2">
+          <span class="text-sm text-gray-500">Bahasa:</span>
+          <button id="langBtnSmMenu" class="px-3 py-1.5 rounded-lg border border-black/10 text-sm hover:bg-gray-50">ID</button>
         </div>
       </nav>
-
-      <!-- Mobile buttons -->
-      <div class="md:hidden flex items-center gap-2">
-        <button id="langBtnSm" class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 text-xs border border-black/10 focus-ring"
-                aria-label="Switch Language (mobile)">ID</button>
-        <button id="menuBtn" class="p-2 rounded-lg text-[--ink] hover:bg-gray-100 focus-ring"
-                aria-label="Open Menu" :aria-expanded="mobileOpen" @click="mobileOpen = !mobileOpen">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-               stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
-      </div>
     </div>
-  </div>
-
-  <!-- Mobile Menu (tetap collapsible) -->
-  <div class="md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5"
-       x-show="mobileOpen" x-transition.origin.top x-cloak>
-    <nav class="flex flex-col px-6 py-4 gap-2 text-base font-medium">
-      <!-- Tentang -->
-      <button @click="toggleMobile('about')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
-        <span>Tentang</span>
-        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='about' ? 'rotate-180' : ''">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
-        </span>
-      </button>
-      <div x-show="mobile.open==='about'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-        <a href="#tentang-kami" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Tentang Kami</a>
-        <a href="#sejarah" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Sejarah</a>
-        <a href="#visi-misi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Visi & Misi</a>
-      </div>
-
-      <!-- Bisnis Kami -->
-      <button @click="toggleMobile('business')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
-        <span>Bisnis Kami</span>
-        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='business' ? 'rotate-180' : ''">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
-        </span>
-      </button>
-      <div x-show="mobile.open==='business'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-        <a href="#mine-planning" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Mine Planning</a>
-        <a href="#operation" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Mining Operation</a>
-        <a href="#logistics" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Logistics</a>
-        <a href="#support" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Support Services</a>
-      </div>
-
-      <!-- ESG -->
-      <button @click="toggleMobile('esg')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
-        <span>ESG</span>
-        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='esg' ? 'rotate-180' : ''">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
-        </span>
-      </button>
-      <div x-show="mobile.open==='esg'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-        <a href="#environment" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Environment</a>
-        <a href="#social" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Social</a>
-        <a href="#governance" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Governance</a>
-      </div>
-
-      <!-- Investor -->
-      <button @click="toggleMobile('investor')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
-        <span>Investor</span>
-        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='investor' ? 'rotate-180' : ''">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
-        </span>
-      </button>
-      <div x-show="mobile.open==='investor'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-        <a href="#overview" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Overview</a>
-        <a href="#reports" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Reports</a>
-        <a href="#news" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Newsroom</a>
-      </div>
-
-      <!-- Media -->
-      <button @click="toggleMobile('media')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">
-        <span>Media</span>
-        <span class="nav-caret ml-1 transition-transform" :class="mobile.open==='media' ? 'rotate-180' : ''">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-4 h-4"><path d="M6 9l6 6 6-6"></path></svg>
-        </span>
-      </button>
-      <div x-show="mobile.open==='media'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-        <a href="#press" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Press</a>
-        <a href="#gallery" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Gallery</a>
-        <a href="#downloads" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Downloads</a>
-      </div>
-
-      <!-- Link langsung -->
-      <a href="#tim" class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">Tim Kami</a>
-
-      <!-- CTA + Language -->
-      <a href="#cta" data-i18n="cta_consult"
-         class="mt-2 px-4 py-2 rounded-xl text-center bg-[--maroon] text-white shadow-[0_0_8px_rgba(212,175,55,0.25)]">Konsultasi</a>
-      <div class="pt-2 flex items-center gap-2">
-        <span class="text-sm text-gray-500">Lang:</span>
-        <button id="langBtnSmMenu" class="px-3 py-1.5 rounded-lg border border-black/10 text-sm hover:bg-gray-50">ID</button>
-      </div>
-    </nav>
-  </div>
-</header>
-
+  </header>
 
     <!-- ================== /NAVBAR ================== -->
 
@@ -1167,11 +1113,6 @@
           class="flex flex-col md:flex-row items-center justify-between gap-6 border-b border-white/10 pb-6"
         >
           <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[--maroon] to-[--gold] grid place-items-center text-white font-bold shadow-lg"
-            >
-              AG
-            </div>
             <span class="text-lg font-semibold">Andalan Group</span>
           </div>
           <nav class="flex flex-wrap items-center gap-6 text-sm font-medium">
@@ -1256,243 +1197,347 @@
 
     <!-- ================== SCRIPTS ================== -->
     <script>
-(function () {
-  "use strict";
+      (function () {
+        "use strict";
 
-  /* ===== Utilities ===== */
-  const $  = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+        /* ===== Utilities ===== */
+        const $ = (sel, root = document) => root.querySelector(sel);
+        const $$ = (sel, root = document) =>
+          Array.from(root.querySelectorAll(sel));
 
-  /* ===== I18N ===== */
-  const DICT = {
-    ID: {
-      meta_title: "Andalan Group — Kontraktor Tambang",
-      meta_desc: "Andalan Group: mitra strategis dari pit ke port. End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping.",
-      nav_about: "Tentang Kami", nav_business: "Bisnis", nav_esg: "ESG", nav_investor: "Investor", nav_contact: "Kontak",
-      cta_consult: "Konsultasi",
-      hero_tag: "sELAMAT DATANG di Andalan Group",
-      hero_title: "Mitra Strategis dari Pit ke Port",
-      hero_desc: "End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping.",
-      hero_btn1: "Info Investor", hero_btn2: "Unit Bisnis",
-      footer_copy: "© 2025 Andalan Group. Seluruh hak cipta.", footer_privacy: "Kebijakan Privasi", footer_terms: "Syarat & Ketentuan",
-      subsidiaries_title: "Perusahaan Kami",
-      subsidiaries_desc: "Unit perusahaan dalam naungan Andalan Group.",
-      subsidiaries: {
-        aap: { name: "PT Andalan Artha Primanusa (AAP)", subsidiaries_desc:
-`- **Kontraktor pertambangan nikel & batubara** dengan pengalaman lapangan yang kuat.
+        /* ===== I18N ===== */
+        const DICT = {
+          ID: {
+            meta_title: "Andalan Group — Kontraktor Tambang",
+            meta_desc:
+              "Andalan Group: mitra strategis dari pit ke port. End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping.",
+            nav_about: "Tentang Kami",
+            nav_business: "Bisnis",
+            nav_esg: "ESG",
+            nav_investor: "Investor",
+            nav_contact: "Kontak",
+            cta_consult: "Konsultasi",
+            hero_tag: "sELAMAT DATANG di Andalan Group",
+            hero_title: "Mitra Strategis dari Pit ke Port",
+            hero_desc:
+              "End-to-end mining services: perencanaan, penambangan, hauling, hingga shipping.",
+            hero_btn1: "Info Investor",
+            hero_btn2: "Unit Bisnis",
+            footer_copy: "© 2025 Andalan Group. Seluruh hak cipta.",
+            footer_privacy: "Kebijakan Privasi",
+            footer_terms: "Syarat & Ketentuan",
+            subsidiaries_title: "Perusahaan Kami",
+            subsidiaries_desc: "Unit perusahaan dalam naungan Andalan Group.",
+            subsidiaries: {
+              aap: {
+                name: "PT Andalan Artha Primanusa (AAP)",
+                subsidiaries_desc: `- **Kontraktor pertambangan nikel & batubara** dengan pengalaman lapangan yang kuat.
 - **Layanan end-to-end**: perencanaan tambang, operasi, logistik, hingga support services.
 - **Armada modern & teknologi terkini** untuk produktivitas optimal.
 - **Standar K3 (HSE) & ESG tinggi**, mengutamakan keselamatan dan keberlanjutan.
 - **Fokus pada KPI & efisiensi**, memberikan hasil yang terukur bagi mitra.
-`},
-        abn: { name: "PT Andalan Bara Nusantara (ABN)", subsidiaries_desc:
-`- **Perusahaan trading & distribusi batubara** dengan jaringan pasar luas.
+`,
+              },
+              abn: {
+                name: "PT Andalan Bara Nusantara (ABN)",
+                subsidiaries_desc: `- **Perusahaan trading & distribusi batubara** dengan jaringan pasar luas.
 - **Mengelola supply chain lengkap** dari site ke port hingga pemasaran.
 - **Layanan domestik & ekspor** dengan kepatuhan penuh regulasi.
 - **Mitra terpercaya** bagi industri energi & manufaktur.
 - **Integrasi logistik & shipping** untuk kelancaran rantai pasok.
-`},
-      },
-      maps_title: "Peta Lokasi Proyek Tambang",
-      maps_desc: "Menampilkan representasi geospasial wilayah operasional Andalan Group di Indonesia, sebagai dasar transparansi dan akuntabilitas pengelolaan pertambangan.",
-      maps_site_label: "Lokasi Site", maps_site_value: "Pulau Sulawesi & Pulau Kalimantan",
-      maps_scope_label: "Cakupan",
-      maps_scope_value: "Kegiatan pertambangan nikel dan batubara, termasuk infrastruktur pendukung rantai pasok dari pit hingga port.",
-      maps_proj_label: "Tentang Proyek",
-      maps_proj_value: "Proyek tambang Andalan Group dirancang untuk memadukan produktivitas, keselamatan kerja, dan keberlanjutan lingkungan. Kami mengoptimalkan teknologi modern guna memastikan efisiensi operasional, menerapkan Sistem Manajemen K3 secara ketat untuk melindungi tenaga kerja, serta mengedepankan praktik pertambangan hijau yang sejalan dengan regulasi nasional dan standar global. Dengan pendekatan ini, kami berkomitmen menghadirkan nilai tambah berkelanjutan bagi pemangku kepentingan, masyarakat sekitar, dan generasi mendatang.",
-    },
-    EN: {
-      meta_title: "Andalan Group — Mining Contractor",
-      meta_desc: "Andalan Group: your strategic partner from pit to port. End-to-end mining services: planning, mining, hauling, and shipping.",
-      nav_about: "About", nav_business: "Business", nav_esg: "ESG", nav_investor: "Investors", nav_contact: "Contact",
-      cta_consult: "Consultation",
-      hero_tag: "Operational Excellence",
-      hero_title: "Strategic Partner from Pit to Port",
-      hero_desc: "End-to-end mining services: planning, mining, hauling, and shipping.",
-      hero_btn1: "Investor Info", hero_btn2: "Business Units",
-      footer_copy: "© 2025 Andalan Group. All rights reserved.", footer_privacy: "Privacy Policy", footer_terms: "Terms & Conditions",
-      subsidiaries_title: "Our Companies",
-      subsidiaries_desc: "Subsidiary companies under Andalan Group.",
-      subsidiaries: {
-        aap: { name: "PT Andalan Artha Primanusa (AAP)", subsidiaries_desc:
-"Nickel & coal mining contractor. End-to-end services: mine planning, operations, logistics, and support services with strong commitments to KPIs, HSE, and ESG." },
-        abn: { name: "PT Andalan Bara Nusantara (ABN)", subsidiaries_desc:
-"Mining trading & distribution (primarily coal). Manages the supply chain from site to port and commercializes products for domestic and export markets with full regulatory compliance." },
-      },
-      maps_title: "Mining Project Location Map",
-      maps_desc: "Depicting the geospatial representation of Andalan Group’s operational areas in Indonesia, highlighting transparency and accountability in mining management.",
-      maps_site_label: "Site Location", maps_site_value: "Sulawesi Island & Kalimantan Island",
-      maps_scope_label: "Coverage",
-      maps_scope_value: "Nickel and coal mining operations, including supporting infrastructure across the pit-to-port supply chain.",
-      maps_proj_label: "About the Project",
-      maps_proj_value: "Andalan Group’s mining projects are designed to integrate productivity, occupational safety, and environmental sustainability. We leverage modern technology to ensure operational efficiency, enforce strict Occupational Health and Safety (K3) systems to safeguard our workforce, and promote green mining practices aligned with national regulations and global standards. Through this approach, we are committed to delivering sustainable value to stakeholders, surrounding communities, and future generations.",
-    },
-  };
+`,
+              },
+            },
+            maps_title: "Peta Lokasi Proyek Tambang",
+            maps_desc:
+              "Menampilkan representasi geospasial wilayah operasional Andalan Group di Indonesia, sebagai dasar transparansi dan akuntabilitas pengelolaan pertambangan.",
+            maps_site_label: "Lokasi Site",
+            maps_site_value: "Pulau Sulawesi & Pulau Kalimantan",
+            maps_scope_label: "Cakupan",
+            maps_scope_value:
+              "Kegiatan pertambangan nikel dan batubara, termasuk infrastruktur pendukung rantai pasok dari pit hingga port.",
+            maps_proj_label: "Tentang Proyek",
+            maps_proj_value:
+              "Proyek tambang Andalan Group dirancang untuk memadukan produktivitas, keselamatan kerja, dan keberlanjutan lingkungan. Kami mengoptimalkan teknologi modern guna memastikan efisiensi operasional, menerapkan Sistem Manajemen K3 secara ketat untuk melindungi tenaga kerja, serta mengedepankan praktik pertambangan hijau yang sejalan dengan regulasi nasional dan standar global. Dengan pendekatan ini, kami berkomitmen menghadirkan nilai tambah berkelanjutan bagi pemangku kepentingan, masyarakat sekitar, dan generasi mendatang.",
+          },
+          EN: {
+            meta_title: "Andalan Group — Mining Contractor",
+            meta_desc:
+              "Andalan Group: your strategic partner from pit to port. End-to-end mining services: planning, mining, hauling, and shipping.",
+            nav_about: "About",
+            nav_business: "Business",
+            nav_esg: "ESG",
+            nav_investor: "Investors",
+            nav_contact: "Contact",
+            cta_consult: "Consultation",
+            hero_tag: "Operational Excellence",
+            hero_title: "Strategic Partner from Pit to Port",
+            hero_desc:
+              "End-to-end mining services: planning, mining, hauling, and shipping.",
+            hero_btn1: "Investor Info",
+            hero_btn2: "Business Units",
+            footer_copy: "© 2025 Andalan Group. All rights reserved.",
+            footer_privacy: "Privacy Policy",
+            footer_terms: "Terms & Conditions",
+            subsidiaries_title: "Our Companies",
+            subsidiaries_desc: "Subsidiary companies under Andalan Group.",
+            subsidiaries: {
+              aap: {
+                name: "PT Andalan Artha Primanusa (AAP)",
+                subsidiaries_desc:
+                  "Nickel & coal mining contractor. End-to-end services: mine planning, operations, logistics, and support services with strong commitments to KPIs, HSE, and ESG.",
+              },
+              abn: {
+                name: "PT Andalan Bara Nusantara (ABN)",
+                subsidiaries_desc:
+                  "Mining trading & distribution (primarily coal). Manages the supply chain from site to port and commercializes products for domestic and export markets with full regulatory compliance.",
+              },
+            },
+            maps_title: "Mining Project Location Map",
+            maps_desc:
+              "Depicting the geospatial representation of Andalan Group’s operational areas in Indonesia, highlighting transparency and accountability in mining management.",
+            maps_site_label: "Site Location",
+            maps_site_value: "Sulawesi Island & Kalimantan Island",
+            maps_scope_label: "Coverage",
+            maps_scope_value:
+              "Nickel and coal mining operations, including supporting infrastructure across the pit-to-port supply chain.",
+            maps_proj_label: "About the Project",
+            maps_proj_value:
+              "Andalan Group’s mining projects are designed to integrate productivity, occupational safety, and environmental sustainability. We leverage modern technology to ensure operational efficiency, enforce strict Occupational Health and Safety (K3) systems to safeguard our workforce, and promote green mining practices aligned with national regulations and global standards. Through this approach, we are committed to delivering sustainable value to stakeholders, surrounding communities, and future generations.",
+          },
+        };
 
-  const i18n = {
-    apply(lang) {
-      const L = lang === "EN" ? "EN" : "ID";
-      const dict = DICT[L];
-      $$("[data-i18n]").forEach((node) => {
-        const key = node.getAttribute("data-i18n");
-        if (key && dict[key] && !(node.tagName === "TITLE" || node.tagName === "META")) node.textContent = dict[key];
-      });
-      $$("[data-i18n-placeholder]").forEach((node) => {
-        const key = node.getAttribute("data-i18n-placeholder");
-        if (key && dict[key]) node.setAttribute("placeholder", dict[key]);
-      });
-      document.title = dict.meta_title;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute("content", dict.meta_desc);
-      document.documentElement.setAttribute("lang", L === "EN" ? "en" : "id");
-      $("#langLabel") && ($("#langLabel").textContent = L);
-      $("#langBtnSm") && ($("#langBtnSm").textContent = L);
-      $("#langBtnSmMenu") && ($("#langBtnSmMenu").textContent = L);
-      localStorage.setItem("site_lang", L);
-    },
-    toggle() {
-      const curr = localStorage.getItem("site_lang") || "ID";
-      this.apply(curr === "ID" ? "EN" : "ID");
-    },
-    init() {
-      const initial = localStorage.getItem("site_lang") || "ID";
-      this.apply(initial);
-      $("#langBtn")?.addEventListener("click", () => this.toggle());
-      $("#langBtnSm")?.addEventListener("click", () => this.toggle());
-      $("#langBtnSmMenu")?.addEventListener("click", () => this.toggle());
-    },
-  };
+        const i18n = {
+          apply(lang) {
+            const L = lang === "EN" ? "EN" : "ID";
+            const dict = DICT[L];
+            $$("[data-i18n]").forEach((node) => {
+              const key = node.getAttribute("data-i18n");
+              if (
+                key &&
+                dict[key] &&
+                !(node.tagName === "TITLE" || node.tagName === "META")
+              )
+                node.textContent = dict[key];
+            });
+            $$("[data-i18n-placeholder]").forEach((node) => {
+              const key = node.getAttribute("data-i18n-placeholder");
+              if (key && dict[key]) node.setAttribute("placeholder", dict[key]);
+            });
+            document.title = dict.meta_title;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute("content", dict.meta_desc);
+            document.documentElement.setAttribute(
+              "lang",
+              L === "EN" ? "en" : "id"
+            );
+            $("#langLabel") && ($("#langLabel").textContent = L);
+            $("#langBtnSm") && ($("#langBtnSm").textContent = L);
+            $("#langBtnSmMenu") && ($("#langBtnSmMenu").textContent = L);
+            localStorage.setItem("site_lang", L);
+          },
+          toggle() {
+            const curr = localStorage.getItem("site_lang") || "ID";
+            this.apply(curr === "ID" ? "EN" : "ID");
+          },
+          init() {
+            const initial = localStorage.getItem("site_lang") || "ID";
+            this.apply(initial);
+            $("#langBtn")?.addEventListener("click", () => this.toggle());
+            $("#langBtnSm")?.addEventListener("click", () => this.toggle());
+            $("#langBtnSmMenu")?.addEventListener("click", () => this.toggle());
+          },
+        };
 
-  /* ===== Alpine component for header nav ===== */
-  window.nav = function () {
-    return {
-      open: "",          // desktop dropdown key yg terbuka
-      mobileOpen: true, // visibility mobile menu
-      mobile: { open: "" }, // mobile section yg terbuka
+        /* ===== Alpine component for header nav ===== */
+        window.nav = function () {
+          return {
+            open: "", // desktop dropdown key yg terbuka
+            mobileOpen: true, // visibility mobile menu
+            mobile: { open: "" }, // mobile section yg terbuka
 
-      toggle(key) { this.open = (this.open === key) ? "" : key; },
-      toggleMobile(key) { this.mobile.open = (this.mobile.open === key) ? "" : key; },
-      closeAll() { this.open = ""; this.mobile.open = ""; },
+            toggle(key) {
+              this.open = this.open === key ? "" : key;
+            },
+            toggleMobile(key) {
+              this.mobile.open = this.mobile.open === key ? "" : key;
+            },
+            closeAll() {
+              this.open = "";
+              this.mobile.open = "";
+            },
 
-      init() {
-        // Tutup dropdown saat viewport < md (beralih ke mobile)
-        const onResize = () => { if (window.innerWidth < 768) this.open = ""; };
-        window.addEventListener("resize", onResize);
+            init() {
+              // Tutup dropdown saat viewport < md (beralih ke mobile)
+              const onResize = () => {
+                if (window.innerWidth < 768) this.open = "";
+              };
+              window.addEventListener("resize", onResize);
 
-        // TIDAK ada auto-close saat klik link (biar "diem")
-        // ESC untuk menutup mobile menu bila terbuka
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && this.mobileOpen) {
-            this.mobileOpen = true;
-            this.mobile.open = "";
-          }
-        });
-      },
-    };
-  };
+              // TIDAK ada auto-close saat klik link (biar "diem")
+              // ESC untuk menutup mobile menu bila terbuka
+              document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && this.mobileOpen) {
+                  this.mobileOpen = true;
+                  this.mobile.open = "";
+                }
+              });
+            },
+          };
+        };
 
-  /* ===== (Opsional) Hero Slider ===== */
-  function initHeroSlider() {
-    const region = $("#home");
-    const slides = $$(".slide", region);
-    const dots = $$(".dot", region);
-    if (!region || slides.length === 0 || dots.length === 0) return;
+        /* ===== (Opsional) Hero Slider ===== */
+        function initHeroSlider() {
+          const region = $("#home");
+          const slides = $$(".slide", region);
+          const dots = $$(".dot", region);
+          if (!region || slides.length === 0 || dots.length === 0) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const INTERVAL = 6000;
-    let index = 0, timer = null;
+          const prefersReduced = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches;
+          const INTERVAL = 6000;
+          let index = 0,
+            timer = null;
 
-    const updateDots = (i) => {
-      dots.forEach((d, k) => {
-        d.classList.toggle("bg-white/50", k === i);
-        d.classList.toggle("bg-white/30", k !== i);
-        d.setAttribute("aria-selected", k === i ? "true" : "true");
-        d.setAttribute("tabindex", k === i ? "0" : "-1");
-      });
-    };
+          const updateDots = (i) => {
+            dots.forEach((d, k) => {
+              d.classList.toggle("bg-white/50", k === i);
+              d.classList.toggle("bg-white/30", k !== i);
+              d.setAttribute("aria-selected", k === i ? "true" : "true");
+              d.setAttribute("tabindex", k === i ? "0" : "-1");
+            });
+          };
 
-    const show = (i) => {
-      index = (i + slides.length) % slides.length;
-      slides.forEach((s, k) => {
-        s.classList.toggle("active", k === index);
-        s.setAttribute("aria-hidden", k === index ? "true" : "true");
-      });
-      updateDots(index);
-    };
+          const show = (i) => {
+            index = (i + slides.length) % slides.length;
+            slides.forEach((s, k) => {
+              s.classList.toggle("active", k === index);
+              s.setAttribute("aria-hidden", k === index ? "true" : "true");
+            });
+            updateDots(index);
+          };
 
-    const next = () => show(index + 1);
-    const prev = () => show(index - 1);
+          const next = () => show(index + 1);
+          const prev = () => show(index - 1);
 
-    const start = () => { if (!prefersReduced) { stop(); timer = setInterval(next, INTERVAL); } };
-    const stop  = () => { if (timer) { clearInterval(timer); timer = null; } };
+          const start = () => {
+            if (!prefersReduced) {
+              stop();
+              timer = setInterval(next, INTERVAL);
+            }
+          };
+          const stop = () => {
+            if (timer) {
+              clearInterval(timer);
+              timer = null;
+            }
+          };
 
-    slides.forEach((s, k) => {
-      s.setAttribute("role", "group");
-      s.setAttribute("aria-roledescription", "slide");
-      s.setAttribute("aria-label", `Slide ${k + 1} dari ${slides.length}`);
-      s.setAttribute("aria-hidden", k === 0 ? "true" : "true");
-    });
+          slides.forEach((s, k) => {
+            s.setAttribute("role", "group");
+            s.setAttribute("aria-roledescription", "slide");
+            s.setAttribute(
+              "aria-label",
+              `Slide ${k + 1} dari ${slides.length}`
+            );
+            s.setAttribute("aria-hidden", k === 0 ? "true" : "true");
+          });
 
-    dots.forEach((d, k) => {
-      d.setAttribute("role", "tab");
-      d.setAttribute("aria-controls", `slide-${k + 1}`);
-      d.addEventListener("click", () => { show(k); start(); });
-      d.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(k); start(); }
-        if (e.key === "ArrowLeft") { e.preventDefault(); prev(); start(); }
-        if (e.key === "ArrowRight") { e.preventDefault(); next(); start(); }
-      });
-    });
+          dots.forEach((d, k) => {
+            d.setAttribute("role", "tab");
+            d.setAttribute("aria-controls", `slide-${k + 1}`);
+            d.addEventListener("click", () => {
+              show(k);
+              start();
+            });
+            d.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                show(k);
+                start();
+              }
+              if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                prev();
+                start();
+              }
+              if (e.key === "ArrowRight") {
+                e.preventDefault();
+                next();
+                start();
+              }
+            });
+          });
 
-    region.addEventListener("mouseenter", stop);
-    region.addEventListener("mouseleave", start);
-    region.addEventListener("focusin", stop);
-    region.addEventListener("focusout", start);
-    region.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { e.preventDefault(); prev(); start(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); next(); start(); }
-    });
+          region.addEventListener("mouseenter", stop);
+          region.addEventListener("mouseleave", start);
+          region.addEventListener("focusin", stop);
+          region.addEventListener("focusout", start);
+          region.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              prev();
+              start();
+            }
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              next();
+              start();
+            }
+          });
 
-    document.addEventListener("visibilitychange", () => { document.hidden ? stop() : start(); });
+          document.addEventListener("visibilitychange", () => {
+            document.hidden ? stop() : start();
+          });
 
-    let touchX = null;
-    region.addEventListener("touchstart", (e) => { touchX = e.touches[0].clientX; }, { passive: true });
-    region.addEventListener("touchend", (e) => {
-      if (touchX == null) return;
-      const dx = e.changedTouches[0].clientX - touchX;
-      if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
-      touchX = null; start();
-    }, { passive: true });
+          let touchX = null;
+          region.addEventListener(
+            "touchstart",
+            (e) => {
+              touchX = e.touches[0].clientX;
+            },
+            { passive: true }
+          );
+          region.addEventListener(
+            "touchend",
+            (e) => {
+              if (touchX == null) return;
+              const dx = e.changedTouches[0].clientX - touchX;
+              if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+              touchX = null;
+              start();
+            },
+            { passive: true }
+          );
 
-    show(0); start();
-  }
-
-  /* ===== (Opsional) Gallery overlay tap ===== */
-  function initGalleryOverlay() {
-    $$(".card").forEach((card) => {
-      const overlay = $(".card-overlay", card);
-      if (!overlay) return;
-      let toggled = true;
-      card.addEventListener("click", (e) => {
-        if (window.matchMedia("(hover: none)").matches) {
-          toggled = !toggled;
-          overlay.style.opacity = toggled ? "1" : "";
-          overlay.style.transform = toggled ? "translateY(0)" : "";
-          e.preventDefault();
+          show(0);
+          start();
         }
-      });
-    });
-  }
 
-  /* ===== Boot ===== */
-  i18n.init();
-  initHeroSlider();
-  initGalleryOverlay();
-})();
-</script>
+        /* ===== (Opsional) Gallery overlay tap ===== */
+        function initGalleryOverlay() {
+          $$(".card").forEach((card) => {
+            const overlay = $(".card-overlay", card);
+            if (!overlay) return;
+            let toggled = true;
+            card.addEventListener("click", (e) => {
+              if (window.matchMedia("(hover: none)").matches) {
+                toggled = !toggled;
+                overlay.style.opacity = toggled ? "1" : "";
+                overlay.style.transform = toggled ? "translateY(0)" : "";
+                e.preventDefault();
+              }
+            });
+          });
+        }
 
-
-
+        /* ===== Boot ===== */
+        i18n.init();
+        initHeroSlider();
+        initGalleryOverlay();
+      })();
+    </script>
 
     <!-- ArcGIS: render shape negara Indonesia -->
     <script>
