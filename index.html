@@ -179,15 +179,12 @@
             <button type="button" aria-haspopup="menu"
               class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
               @click="toggle('investor')" :aria-expanded="open==='investor'">
-              <span>Investor</span>
+              <span>Project</span>
               <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div x-cloak x-show="open==='investor'" x-transition.origin.top.left @click.stop role="menu"
                  class="menu-panel absolute left-0 top-[calc(100%+8px)] w-80 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
-              <a href="./investor/investor.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Informasi Pemegang Saham</a>
-              <a href="./investor/investor.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kinerja Keuangan</a>
-              <a href="./investor/investor.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Pusat Investor</a>
-              <a href="./investor/investor.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Laporan & Info Terbaru</a>
+              <a href="./investor/investor.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Project</a>
             </div>
           </div>
 
@@ -276,15 +273,12 @@
 
         <!-- Investor -->
         <button @click="toggleMobile('investor')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-investor" :aria-expanded="mobile.open==='investor'">
-          <span>Investor</span>
+          <span>Project</span>
           <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div id="m-investor" x-show="mobile.open==='investor'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-          <a href="#pemegang-saham" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Informasi Pemegang Saham</a>
-          <a href="#kinerja-keuangan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Kinerja Keuangan</a>
-          <a href="#pusat-investor" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Pusat Investor</a>
-          <a href="#laporan-terbaru" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Laporan & Info Terbaru</a>
-        </div>
+          <a href="#pemegang-saham" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Project</a>
+            </div>
 
         <!-- Media -->
         <button @click="toggleMobile('media')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-media" :aria-expanded="mobile.open==='media'">

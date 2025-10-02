@@ -57,7 +57,7 @@
     <div class="max-w-7xl mx-auto px-4 md:px-6">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
-        <a href="../index.html" class="flex items-center gap-3 group focus-ring" aria-label="Andalan Group" @click="closeAll()">
+        <a href="../index.html" class="flex items-center gap-3 group focus-ring" aria-label="Andalan Group">
           <span class="font-extrabold tracking-tight text-lg md:text-xl">
             <span class="bg-gradient-to-r from-[--ink] to-[--maroon] bg-clip-text text-transparent">Andalan</span>
             <span class="text-[--maroon] group-hover:text-[--gold] transition">Group</span>
@@ -76,11 +76,11 @@
             </button>
             <div x-cloak x-show="open==='about'" x-transition.origin.top.left @click.stop role="menu"
                  class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
-              <a href="../index.html#visi-misi" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
-              <a href="../index.html#core-values" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Core Values</a>
-              <a href="../index.html#manajemen" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Manajemen</a>
-              <a href="../index.html#struktur" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Struktur Perseroan</a>
-              <a href="../index.html#sejarah" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tonggak Sejarah</a>
+              <a href="./tentang_kami/visimis.html#visi-misi" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Visi & Misi</a>
+              <a href="./tentang_kami/visimis.html#core-values" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Core Values</a>
+              <a href="./tentang_kami/visimis.html#manajemen" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Manajemen</a>
+              <a href="./tentang_kami/visimis.html#struktur" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Struktur Perseroan</a>
+              <a href="./tentang_kami/visimis.html#sejarah" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tonggak Sejarah</a>
             </div>
           </div>
 
@@ -94,8 +94,8 @@
             </button>
             <div x-cloak x-show="open==='business'" x-transition.origin.top.left @click.stop role="menu"
                  class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
-              <a href="#aap" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Artha Primanusa (AAP)</a>
-              <a href="#abn" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Bumi Nusantara (ABN)</a>
+              <a href="./bisniskami/bisniskami.html#aap" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Artha Primanusa (AAP)</a>
+              <a href="./bisniskami/bisniskami.html#abn" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Andalan Bumi Nusantara (ABN)</a>
             </div>
           </div>
 
@@ -109,11 +109,11 @@
             </button>
             <div x-cloak x-show="open==='esg'" x-transition.origin.top.left @click.stop role="menu"
                  class="menu-panel absolute left-0 top-[calc(100%+8px)] w-72 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
-              <a href="../esg/esg.html#kerangka" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kerangka Keberlanjutan</a>
-              <a href="../esg/esg.html#lingkungan" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Lingkungan</a>
-              <a href="../esg/esg.html#sosial" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Sosial</a>
-              <a href="../esg/esg.html#tata-kelola" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tata Kelola</a>
-              <a href="../esg/esg.html#k3" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kesehatan & Keselamatan</a>
+              <a href="./esg/esg.html#kerangka" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kerangka Keberlanjutan</a>
+              <a href="./esg/esg.html#lingkungan" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Lingkungan</a>
+              <a href="./esg/esg.html#sosial" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Aspek Sosial</a>
+              <a href="./esg/esg.html#tata-kelola" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Tata Kelola</a>
+              <a href="./esg/esg.html#k3" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kesehatan & Keselamatan</a>
             </div>
           </div>
 
@@ -122,15 +122,12 @@
             <button type="button" aria-haspopup="menu"
               class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring inline-flex items-center"
               @click="toggle('investor')" :aria-expanded="open==='investor'">
-              <span>Investor</span>
+              <span>Project</span>
               <svg class="w-4 h-4 ml-1 transition-transform duration-200" :class="open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div x-cloak x-show="open==='investor'" x-transition.origin.top.left @click.stop role="menu"
                  class="menu-panel absolute left-0 top-[calc(100%+8px)] w-80 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
-              <a href="#pemegang-saham" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Informasi Pemegang Saham</a>
-              <a href="#kinerja-keuangan" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Kinerja Keuangan</a>
-              <a href="#pusat-investor" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Pusat Investor</a>
-              <a href="#laporan-terbaru" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Laporan & Info Terbaru</a>
+              <a href="./investor/investor.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Project</a>
             </div>
           </div>
 
@@ -144,17 +141,17 @@
             </button>
             <div x-cloak x-show="open==='media'" x-transition.origin.top.left @click.stop role="menu"
                  class="menu-panel absolute left-0 top-[calc(100%+8px)] w-64 bg-white border border-gray-200 rounded-lg z-50 overflow-hidden">
-              <a href="../media/media.html#press" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Press</a>
-              <a href="../media/media.html#galeri" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Galeri</a>
-              <a href="../media/media.html#downloads" @click="closeAll()" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Downloads</a>
+              <a href="./media/media.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Press</a>
+              <a href="./media/media.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Galeri</a>
+              <a href="./media/media.html" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[--maroon]/5 hover:text-[--maroon]">Downloads</a>
             </div>
           </div>
 
           <!-- Tim Kami -->
-          <a href="#tim" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring" @click="closeAll()">Tim Kami</a>
+          <a href="#tim" class="px-3 py-2 rounded-lg text-gray-700 hover:text-[--maroon] hover:bg-[--maroon]/5 focus-ring">Tim Kami</a>
 
           <!-- CTA -->
-          <a href="#cta" class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[--maroon] text-white font-semibold shadow-[0_0_8px_rgba(212,175,55,0.25)] hover:scale-105 active:scale-95 transition focus-ring" @click="closeAll()">
+          <a href="#cta" class="ml-1 inline-flex items-center gap-2 px-4 py-2 rounded-xl btn-maroon font-semibold transition focus-ring">
             Konsultasi
           </a>
 
@@ -187,11 +184,11 @@
           <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='about' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div id="m-about" x-show="mobile.open==='about'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-          <a href="#visi-misi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Visi & Misi</a>
-          <a href="#core-values" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Core Values</a>
-          <a href="#manajemen" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Manajemen</a>
-          <a href="#struktur" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Struktur Perseroan</a>
-          <a href="#sejarah" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Tonggak Sejarah</a>
+          <a href="#visi-misi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Visi & Misi</a>
+          <a href="#strategi" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Core Values</a>
+          <a href="#manajemen" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Manajemen</a>
+          <a href="#struktur" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Struktur Perseroan</a>
+          <a href="#sejarah" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Tonggak Sejarah</a>
         </div>
 
         <!-- Bisnis -->
@@ -200,8 +197,8 @@
           <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='business' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div id="m-business" x-show="mobile.open==='business'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-          <a href="#aap" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Andalan Artha Primanusa (AAP)</a>
-          <a href="#abn" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Andalan Bumi Nusantara (ABN)</a>
+          <a href="./bisniskami/bisniskami.html#aap" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Andalan Artha Primanusa (AAP)</a>
+          <a href="#abn" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Andalan Bumi Nusantara (ABN)</a>
         </div>
 
         <!-- ESG -->
@@ -210,30 +207,38 @@
           <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='esg' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div id="m-esg" x-show="mobile.open==='esg'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-          <a href="#kerangka" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Kerangka Keberlanjutan</a>
-          <a href="#lingkungan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Aspek Lingkungan</a>
-          <a href="#sosial" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Aspek Sosial</a>
-          <a href="#tata-kelola" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Tata Kelola</a>
-          <a href="#k3" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Kesehatan & Keselamatan</a>
+          <a href="#kerangka" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Kerangka Keberlanjutan</a>
+          <a href="#lingkungan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Aspek Lingkungan</a>
+          <a href="#sosial" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Aspek Sosial</a>
+          <a href="#tata-kelola" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Tata Kelola</a>
+          <a href="#k3" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Kesehatan & Keselamatan</a>
         </div>
 
         <!-- Investor -->
         <button @click="toggleMobile('investor')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-investor" :aria-expanded="mobile.open==='investor'">
-          <span>Investor</span>
+          <span>Project</span>
           <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='investor' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <div id="m-investor" x-show="mobile.open==='investor'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
-          <a href="#pemegang-saham" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Informasi Pemegang Saham</a>
-          <a href="#kinerja-keuangan" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Kinerja Keuangan</a>
-          <a href="#pusat-investor" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Pusat Investor</a>
-          <a href="#laporan-terbaru" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5" @click="closeAll()">Laporan & Info Terbaru</a>
+          <a href="#pemegang-saham" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Project</a>
+            </div>
+
+        <!-- Media -->
+        <button @click="toggleMobile('media')" class="flex justify-between items-center px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" aria-controls="m-media" :aria-expanded="mobile.open==='media'">
+          <span>Media</span>
+          <svg class="w-4 h-4 ml-1 transition-transform" :class="mobile.open==='media' && 'rotate-180'" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div id="m-media" x-show="mobile.open==='media'" x-collapse class="ml-4 flex flex-col gap-1" x-cloak>
+          <a href="#press" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Press</a>
+          <a href="#galeri" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Galeri</a>
+          <a href="#downloads" class="px-3 py-1.5 rounded-lg hover:bg-[--maroon]/5">Downloads</a>
         </div>
 
         <!-- Link langsung -->
-        <a href="#tim" class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring" @click="closeAll()">Tim Kami</a>
+        <a href="#tim" class="px-3 py-2 rounded-lg hover:bg-[--maroon]/5 focus-ring">Tim Kami</a>
 
         <!-- CTA + Language -->
-        <a href="#cta" class="mt-2 px-4 py-2 rounded-xl text-center bg-[--maroon] text-white shadow-[0_0_8px_rgba(212,175,55,0.25)]" @click="closeAll()">Konsultasi</a>
+        <a href="#cta" class="mt-2 px-4 py-2 rounded-xl text-center btn-maroon">Konsultasi</a>
         <div class="pt-2 flex items-center gap-2">
           <span class="text-sm text-gray-500">Bahasa:</span>
           <button id="langBtnSmMenu" class="px-3 py-1.5 rounded-lg border border-black/10 text-sm hover:bg-gray-50">ID</button>
